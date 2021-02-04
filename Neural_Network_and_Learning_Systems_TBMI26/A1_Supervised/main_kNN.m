@@ -15,7 +15,7 @@ dataSetNr = 1; % Change this to load new data
 [X, D, L] = loadDataSet( dataSetNr );
 
 % You can plot and study dataset 1 to 3 by running:
-% plotCase(X,D)
+plotCase(X,D)
 
 %% Select a subset of the training samples
 
@@ -32,16 +32,16 @@ selectAtRandom = true;          % true = select samples at random, false = selec
 % XBinComb = combineBins(XBins, [1,2,3]);
 
 % Add your own code to setup data for training and test here
-% XTrain = ...
-% LTrain = ...
-% XTest  = ...
-% LTest  = ...
+XTrain = XBins{1};
+LTrain = LBins{1};
+XTest  = XBins{2};
+LTest  = LBins{2};
 
 %% Use kNN to classify data
 %  Note: you have to modify the kNN() function yourself.
 
 % Set the number of neighbors
-k = 1;
+k = 3;
 
 % Classify training data
 LPredTrain = kNN(XTrain, k, XTrain, LTrain);

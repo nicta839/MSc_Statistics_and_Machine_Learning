@@ -50,7 +50,7 @@ selectAtRandom = true;          % true = select samples at random, false = selec
 %  in order to train the network
 
 numIterations = 10000;  % Change this, number of iterations (epochs)
-learningRate  = 0.0001; % Change this, your learning rate
+learningRate  = 0.0005; % Change this, your learning rate
 W0 = 0; % Change this, initialize your weight matrix W
 
 % Run training loop
