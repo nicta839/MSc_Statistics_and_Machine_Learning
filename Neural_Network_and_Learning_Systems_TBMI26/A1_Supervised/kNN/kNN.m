@@ -18,7 +18,7 @@ format long
 
 % Calculate distance between all the points
 % Generate a matrix of these distances
-D = pdist2(X, XTrain); %each row is the distance between point X(i,:) and XTrain(i,j)
+D = pdist2(X, XTrain); %each row is the distance between point X(i,:) and XTrain(j,:)
 
 % Sort distances
 [A, idx] = sort(D, 2);
