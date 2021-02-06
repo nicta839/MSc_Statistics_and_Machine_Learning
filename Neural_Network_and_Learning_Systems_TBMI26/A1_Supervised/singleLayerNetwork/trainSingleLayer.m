@@ -27,7 +27,7 @@ ErrTest(1)  = sum(sum((YTest  - DTest ).^2)) / NTest;
 for n = 1:numIterations
     % Add your own code here
     % Transpose for matrix multiplication
-    grad_w = (2/NTrain) * ((Wout * XTrain) - DTrain)* XTrain'; % Normalize to number of train cases
+    grad_w = (2/NTrain) * ((Wout * XTrain) - DTrain) * XTrain'; % Normalize to number of train cases
 
     % Take a learning step
     Wout = Wout - learningRate * grad_w;

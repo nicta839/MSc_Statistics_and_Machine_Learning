@@ -1,0 +1,143 @@
+%++++++++++++++++++++++++++++++++++++++++s
+\documentclass[letterpaper,12pt]{article}
+\usepackage{tabularx} % extra features for tabular environment
+\usepackage{amsmath}  % improve math presentation
+\usepackage{graphicx} % takes care of graphic including machinery
+\usepackage[margin=1in,letterpaper]{geometry} % decreases margins
+\usepackage{cite} % takes care of citations
+\usepackage[final]{hyperref} % adds hyper links inside the generated pdf file
+\usepackage{caption}
+\usepackage{subcaption}
+\hypersetup{
+	colorlinks=true,       % false: boxed links; true: colored links
+	linkcolor=blue,        % color of internal links
+	citecolor=blue,        % color of links to bibliography
+	filecolor=magenta,     % color of file links
+	urlcolor=blue         
+}
+%++++++++++++++++++++++++++++++++++++++++
+
+
+\begin{document}
+
+\title{732A75 Advanced Data Mining laboratory 1 report}
+\author{Yuki Washio and Nicolas Taba}
+\date{\today}
+\maketitle
+
+
+
+\section{Introduction}
+
+The aim of this laboratory exercise is to gain familiarity with the data mining toolkit Weka by using some of its clustering algorithms and analyzing their output.
+
+In this laboratory, we use the HARTIGAN (file06) dataset. This dataset features 27 kinds of food and informs us of the energy, protein, fat,c alcium and iron content per 3 ounce of portion.
+
+
+\section{Clustering using the Kmeans algorithm}
+
+In this section of the laboratory, we use the Kmeans algortithm to cluster the data. We choose to ignore the "name" label because the algortihm does not interpret names as words but as strings. However, we notice that all of the food are meat and seafood based.
+
+We experiment with the clustering algorithm by trying 2 different number of cluster (2 and 5) starting with the same initial cluster center (seed 10).
+
+\subsection{2 clusters with seed 10}
+
+\begin{figure}[ht] 
+        % read manual to see what [ht] means and for other possible options
+        \centering \includegraphics[width=0.8\columnwidth]{sr_setup}
+        % note that in above figure file name, "sr_setup",
+        % the file extension is missing. LaTeX is smart enough to find
+        % apropriate one (i.e. pdf, png, etc.)
+        % You can add this extention yourself as it seen below
+        % both notations are correct but above has more flexibility
+        %\includegraphics[width=1.0\columnwidth]{sr_setup.pdf}
+        % This cannot be compiled as is because the file sr_setup si not in the directory
+        \caption{
+                \label{fig:samplesetup} % spaces are big no-no withing labels
+                % things like fig: are optional in the label but it helps
+                % to orient yourself when you have multiple figures,
+                % equations and tables
+                Every figure MUST have a caption.
+        }
+\end{figure}
+
+The clustering algoritm separates into two clusters with 9 and 18 elements respectively in each. We seem to be able to separate the clusters into High energy, high fat and high [insert appropriate] and the second cluster having low quantities for those labels. We should also note that the calcium values are misleading due to there being outliers that distort the centroid position. THe clusters seem to be made up of similar elements.
+
+[Check the name labels and see if there is some kind of grouping that can be done according to what kind of meat it is].
+
+
+\subsection{5 clusters with seed 10}
+
+
+\begin{figure}[ht] 
+  \centering
+      \includegraphics[width=0.5\columnwidth]{file_name}
+
+% copy paste this template for figures/images.
+% will check how to add multiple images one next another
+        \caption{
+                \label{fig:appropriate_label}  
+                Every plot must have axes labeled.
+        }
+\end{figure}
+
+The clusters include all the points, but some of the elements of the same clusters are very dissimilar. In Fig.~\ref{fig:appropriate_label} we can see that the elements of the [color] cluster are dissimilar to each other when observing [variable1] with respect to [variable2]. We can conclude that one must choose the appropriate number of clusters in order for this algorithm to work.
+
+\subsection{2 clusters with seed 1 and 123}
+
+
+
+% This is how you add several pictures to the same larger "figure"
+\begin{figure}
+\begin{subfigure}{.5\textwidth}
+  \centering
+  % include first image
+  \includegraphics[width=.8\linewidth]{log_demo1.png}  
+  \caption{Put your sub-caption here}
+  \label{fig:sub-first}
+\end{subfigure}
+\begin{subfigure}{.5\textwidth}
+  \centering
+  % include second image
+  \includegraphics[width=.8\linewidth]{log_demo2.png}  
+  \caption{Put your sub-caption here}
+  \label{fig:sub-second}
+\end{subfigure}
+
+\newline
+
+\begin{subfigure}{.5\textwidth}
+  \centering
+  % include third image
+  \includegraphics[width=.8\linewidth]{log_demo1.png}  
+  \caption{Put your sub-caption here}
+  \label{fig:sub-third}
+\end{subfigure}
+\begin{subfigure}{.5\textwidth}
+  \centering
+  % include fourth image
+  \includegraphics[width=.8\linewidth]{log_demo2.png}  
+  \caption{Put your sub-caption here}
+  \label{fig:sub-fourth}
+\end{subfigure}
+\caption{Put your caption here}
+\label{fig:fig}
+\end{figure}
+
+We observe poor clustering when using seed 123, the elements of the clusters are dissimilar to one another as seen in Fig.~\ref{fig:appropriate_label}. We also notice that there is only one element in cluster [cluster name here]
+
+% Say something smart about using seed 1 here
+
+The seed value controls the generation of random numbers. This in turn decides where the starting centroid is chosen to be in the algorithm. Different seed number will yield different clusters. The seed is intended to be used for reproducibility of results.
+
+\section{Using density based clusters}
+
+We use here density based clusters to cluster our data. This approach allows us to control how large we allow clusters to vary from their centroid by tuning the standard deviation parameter. We use the SimpleKMeans clusterer with $k = 2$ and seed 10. We will change use values of the standard deviation of $1 \cdot E^{-6}$ and $200$.
+
+% Put some figures in here
+
+We observe from this data that the when the standard deviation is large enough, we have clusters with large dissimilarity returned to us by the algorithm. As pointed out earlier, a high standard deviation parameter will result in large amounts of data that are dissimilar to the centroid to be accepted as part of the cluster. This is due to the fact that with  a high enough standard deviation, the density for elements that are far from the centroid is high enough to be accepted in the first cluster that is calculated.
+
+In conclusion, we should pay attention to the value we assign to standard deviation as a value that is too high will yield poor quality clusters with dissimilar items within them.
+
+\end{document}
