@@ -17,7 +17,7 @@ dataSetNr = 1; % Change this to load new data
 %% Select a subset of the training features
 
 numBins = 2;                    % Number of Bins you want to devide your data into
-numSamplesPerLabelPerBin = inf; % Number of samples per label per bin, set to inf for max number (total number is numLabels*numSamplesPerBin)
+numSamplesPerLabelPerBin = 100; % Number of samples per label per bin, set to inf for max number (total number is numLabels*numSamplesPerBin)
 selectAtRandom = true;          % true = select features at random, false = select the first features
 
 [XBins, DBins, LBins] = selectTrainingSamples(X, D, L, numSamplesPerLabelPerBin, numBins, selectAtRandom );
@@ -29,31 +29,31 @@ selectAtRandom = true;          % true = select features at random, false = sele
 % XBinComb = combineBins(XBins, [1,2,3]);
 
 % Add your own code to setup data for training and test here
-% XTrain = ...
-% DTrain = ...
-% LTrain = ...
-% XTest  = ...
-% DTest  = ...
-% LTest  = ...
+XTrain = XBins{1};
+DTrain = DBins{1};
+LTrain = LBins{1};
+XTest  = XBins{2};
+DTest  = DBins{2};
+LTest  = LBins{2};
 
 %% Modify the X Matrices so that a bias is added
 %  Note that the bias must be the last feature for the plot code to work
 
 % The training data
-% XTrain = ...
+XTrain = [XTrain; ones(1,size(XBins{1},2))];
 
 % The test data
-% XTest = ...
+XTest = [XTest; ones(1,size(XBins{2},2))];
 
 %% Train your multi-layer network
 %  Note: You need to modify trainMultiLayer() and runMultiLayer()
 %  in order to train the network
 
-numHidden     = 7;     % Change this, number of hidden neurons 
+numHidden     = 10;     % Change this, number of hidden neurons 
 numIterations = 800;   % Change this, number of iterations (epochs)
-learningRate  = 0.001; % Change this, your learning rate
-W0 = 0; % Initialize your weight matrix W
-V0 = 0; % Initialize your weight matrix V
+learningRate  = 0.02; % Change this, your learning rate
+W0 = rand(size(DTrain, 1), size(XTrain, 1)); % Initialize your weight matrix W
+V0 = rand(size(DTrain, 1), size(XTrain, 1)); % Initialize your weight matrix V
 
 % Run training loop
 tic;
