@@ -7,9 +7,25 @@ function gwdrawpolicy(Policy, varargin)
 % Example:
 %     P = getpolicy(Q);
 %     gwdraw();
-%     GWDRAWPOLICY(P);
+%     GWDRAWPOLICY("Policy", P);
 %
-% See also: gwdraw
+% Optional name-value inputs:
+%     "Policy"     - The policy matrix, i.e. the optimal action for each
+%                    state. If this is passed to the function the policy is
+%                    plotted as a vector field on top of the reward map.
+%                    You should use this for the report images.
+%     "ArrowStyle" - Value should be a string, options ["Pretty", "Fast"].
+%                    Pretty arrows look nicer but are slower to draw. If
+%                    you want to see the agent "walk" in the world, i.e.
+%                    plot every step, we recommend using the fast arrow
+%                    style to make it a bit faster.
+%     "ArrowColor" - As the name suggests, the color of the policy arrows.
+%                    Can for example be useful if you want to plot the
+%                    policy in one color, and the path the agent walks in
+%                    another color, which might be nice for world 4 (hint).
+%                    To plot the path, use the gwplotarrow function.
+%
+% See also: gwdraw, gwplotarrow
 
 % Parse optional inputs
 DEFAULT_ARROW_STYLE = 'Pretty';

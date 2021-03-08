@@ -7,7 +7,7 @@ function epsilon = getepsilon(episode, maxEpisodes)
 % episode and maxEpisodes are hints that these parameters might be good to
 % use when defining epsilon.
 
-
+epsilon = 1- episode / maxEpisodes;
 
 end
 

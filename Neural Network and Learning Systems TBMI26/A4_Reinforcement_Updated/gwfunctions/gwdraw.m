@@ -1,14 +1,33 @@
 function gwdraw(varargin)
-% GWDRAW draws gridworld and robot. If the episode number "e" is provided,
-% the episode number will be shown in the title. If the policy "P" is
-% provided, it will also be drawn on top of the world.
+% GWDRAW draws gridworld and agent. Use name-value arguments to also plot
+% optinal information, such as the policy and episode, see below for more
+% detatils.
 %
 % Example:
 %     P = getpolicy(Q);
 %     e = 10;
-%     GWDRAW(e, P);
+%     GWDRAW("Policy", P, "Episode", e);
 %
-% See also: getpolicy, gwdrawpolicy
+% Optional name-value inputs:
+%     "Policy"     - The policy matrix, i.e. the optimal action for each
+%                    state. If this is passed to the function the policy is
+%                    plotted as a vector field on top of the reward map.
+%                    You should use this for the report images.
+%     "Episode"    - Episode number, a numeric scalar. Plots this number in
+%                    the figure title. Nice for keeping track of progress
+%                    during training.
+%     "ArrowStyle" - Value should be a string, options ["Pretty", "Fast"].
+%                    Pretty arrows look nicer but are slower to draw. If
+%                    you want to see the agent "walk" in the world, i.e.
+%                    plot every step, we recommend using the fast arrow
+%                    style to make it a bit faster.
+%     "ArrowColor" - As the name suggests, the color of the policy arrows.
+%                    Can for example be useful if you want to plot the
+%                    policy in one color, and the path the agent walks in
+%                    another color, which might be nice for world 4 (hint).
+%                    To plot the path, use the gwplotarrow function.
+%
+% See also: getpolicy, gwdrawpolicy, gwdrawarrow
 
 % Parse optional inputs
 DEFAULT_POLICY  = NaN;

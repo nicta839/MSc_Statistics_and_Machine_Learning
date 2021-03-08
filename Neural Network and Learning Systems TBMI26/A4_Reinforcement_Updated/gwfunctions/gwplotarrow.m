@@ -13,6 +13,16 @@ function gwplotarrow(Position, Action, varargin)
 %     gwdraw();
 %     GWPLOTARROW([5,3], 2);
 %
+% Example:
+%     gwdraw();
+%     GWPLOTARROW([5,3], 2, "Color", 'b');
+%
+% Optional name-value inputs:
+%     "Color" - As the name suggests, the color of the arrow.
+%               Can for example be useful if you want to plot the
+%               policy in one color, and the path the agent walks in
+%               another color, which might be nice for world 4 (hint).
+%
 % See also: gwaction, gwdraw, gwdrawpolicy
 
 % Parse optional inputs
