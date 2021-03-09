@@ -1,12 +1,16 @@
+%% Seed
+rng('default');
+rng(1);
+
 %% Hyper-parameters
 
 % Number of randomized Haar-features
-nbrHaarFeatures = 25;
+nbrHaarFeatures = 100;
 % Number of training images, will be evenly split between faces and
 % non-faces. (Should be even.)
-nbrTrainImages = 500;
+nbrTrainImages = 1000;
 % Number of weak classifiers
-nbrWeakClassifiers = 30;
+nbrWeakClassifiers = 100;
 
 %% Load face and non-face data and plot a few examples
 load faces;
@@ -126,8 +130,12 @@ end
 %  Note: you can find this error without re-training with a different
 %  number of weak classifiers.
 
+minAccuracy = 0.93;
+optNumWeakClassfiers = find(testAccuracy >= minAccuracy, 1);
+optTestAccuracy = testAccuracy(1:optNumWeakClassfiers);
+
 figure(4)
-plot(1:nbrWeakClassifiers, testAccuracy*100)
+plot(1:optNumWeakClassfiers, optTestAccuracy*100)
 title("Strong classifier error on test data")
 xlabel("no. weak classifier")
 ylabel("accuracy (%)")
@@ -160,11 +168,27 @@ end
 figure(7);
 colormap gray;
 i = 1;
-while i <= 25
+while i <= optNumWeakClassfiers
     subplot(5,5,i), imagesc(haarFeatureMasks(:,:,results(i, 1)));
     axis image;
     axis off;
     i = i+1;
 end
 
+%% Q1
+% Plot how the classification accuracy on training data and test data depend on the number of weak classifiers (in the same plot). 
+% Be sure to include the number of training data (non-faces + faces), 
+% test-data (non-faces + faces), and the number of Haar-Features.
 
+figure(8)
+plot(1:nbrWeakClassifiers, trainAccuracy*100)
+hold on
+plot(1:nbrWeakClassifiers, testAccuracy*100)
+title("Classification accuracy on training data and test data")
+xlabel("no. weak classifier")
+ylabel("accuracy (%)")
+legend('train','test')
+dim = [0.6 0.15 0.1 0.1];
+str = {['Number of training data = ',num2str(nbrTrainImages)],['Number of test data = ',num2str(nbrTestImages)],['Haar-features = ',num2str(nbrHaarFeatures)]};
+annotation('textbox',dim,'String',str,'FitBoxToText','on');
+hold off
