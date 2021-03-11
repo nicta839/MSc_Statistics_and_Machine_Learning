@@ -1,55 +1,46 @@
 %% Initialization
-%  Initialize the world, Q-table, and hyperparameters
-world_nb = 2;
-gwinit(world_nb);
-state = gwstate;
+%  Init world
+world = 4;
+gridWorld = gwinit(world);
 
-% param and Q table
-action = [1, 2, 3, 4];
-prob = [1, 1, 1, 1];
+% Define possible actions and associated probabilities
+actions = [1, 2, 3, 4];
+probs = [1, 1, 1, 1];
 
-Q = rand(state.ysize, state.xsize, size(action, 2));
-Q(1,:,2) = -inf;
-Q(state.ysize,:,1) = -inf;
-Q(:,1,4) = -inf;
-Q(:,state.xsize,3) = -inf;
+Q = rand(gridWorld.ysize, gridWorld.xsize, length(actions)); % Init Q = [[M x N], [M x N], [M x N], [M x N]]
+Q(gridWorld.ysize,:,1) = -inf; % Set first Matrix in Q last row to -Inf
+Q(1,:,2) = -inf; % Set second Matrix in Q first row to -Inf
+Q(:,gridWorld.xsize,3) = -inf; % Set third Matrix in Q last column to -Inf
+Q(:,1,4) = -inf; % Set fourth Matrix in Q first column to -Inf
 
-discount = 0.9; %or gamma
-learn_rate = 0.3; %or alpha
-max_step = 100;
-episodes = 2000;
-
+% Define hyperparameters
+discount = 0.9; 
+epsillon = 0.1;
+nbrEpisodes = 2000;
 
 
 
 %% Training loop
 %  Train the agent using the Q-learning algorithm.
 
-for t = 1:episodes
-        gwinit(world_nb);
-        start_state = gwstate;
-        explor_factor = getepsilon(t, episodes);
-        
-        for i = 1:max_step
-            [a, oa] = chooseaction(Q, start_state.pos(1), start_state.pos(2), action, prob, explor_factor);
-            state_i = gwaction(a);
-            while ~state_i.isvalid
-                [a, oa] = chooseaction(Q, start_state.pos(1), start_state.pos(2), action, prob, explor_factor);
-                state_i = gwaction(a);
-            end
-            
-            Q(start_state.pos(1), start_state.pos(2), a) = (1 - learn_rate)* Q(start_state.pos(1), start_state.pos(2), a) + ...
-                learn_rate * (state_i.feedback + discount * max(Q(state_i.pos(1), state_i.pos(2), :)));
-            
-            
-           if state_i.isterminal
-               break
-           else
-               start_state = state_i;
-           end
+for episode = 1:nbrEpisodes % Iterate over all episodes (2000)
+    gwinit(world);
+    startState = gwstate; % Initialize startingState
+    currentState = startState; % Set startingState to currentState
+    epsillon = getepsilon(episode, nbrEpisodes); % Epsillon changes based on episodes iterated (gets smaller over time, explore -> exploit)  
+    while ~currentState.isterminal
+        [a, oa] = chooseaction(Q, currentState.pos(1), currentState.pos(2), actions, probs, epsillon); % Choose action based on position, possible moves and probabilities
+        nextState = gwaction(a); % Get nextState based on chosen action
+        while ~nextState.isvalid
+            [a, oa] = chooseaction(Q, currentState.pos(1), currentState.pos(2), actions, probs, epsillon);
+            nextState = gwaction(a);
         end
+        % Update estimated Q-function
+        Q(currentState.pos(1), currentState.pos(2), a) = (1 - epsillon)* Q(currentState.pos(1), currentState.pos(2), a) + ...
+            epsillon * (nextState.feedback + discount * max(Q(nextState.pos(1), nextState.pos(2), :)));
+        currentState = nextState; % Set nextState to currentState
+    end
 end
-
     
 
 %% Test loop
@@ -58,27 +49,15 @@ end
 %  Also, you should not explore when testing, i.e. epsilon=0; always pick
 %  the optimal action.
 
-optim_policy = getpolicy(Q);
-gwinit(world_nb);
-i = 1;
-max_step = 100;
+optPolicy = getpolicy(Q); % Get optimal policies
+gwinit(world); 
 gwdraw
 
-while i < max_step
-    step_cur = gwstate;
-    a = optim_policy(step_cur.pos(1), step_cur.pos(2));
-    gwplotarrow(step_cur.pos, a);
-    next = gwaction(a);
+currentState = gwstate;
+while ~currentState.isterminal
+    optimalAction = optPolicy(currentState.pos(1), currentState.pos(2));
+    nextState = gwaction(optimalAction);
     gwdraw
-    if next.isterminal
-        break
-    else
-        i = i + 1;
-    end
+    % gwplotarrow(currentState.pos, optimalAction);
+    currentState = nextState;
 end
-
-V_test = getvalue(Q);
-% surf(V_test)
-
-
-
