@@ -15,7 +15,7 @@ Q(:,1,4) = -inf; % Set fourth Matrix in Q first column to -Inf
 
 % Define hyperparameters
 discount = 0.9; 
-epsillon = 0.1;
+epsilon = 0.1;
 nbrEpisodes = 2000;
 
 
@@ -27,17 +27,17 @@ for episode = 1:nbrEpisodes % Iterate over all episodes (2000)
     gwinit(world);
     startState = gwstate; % Initialize startingState
     currentState = startState; % Set startingState to currentState
-    epsillon = getepsilon(episode, nbrEpisodes); % Epsillon changes based on episodes iterated (gets smaller over time, explore -> exploit)  
+    epsilon = getepsilon(episode, nbrEpisodes); % Epsillon changes based on episodes iterated (gets smaller over time, explore -> exploit)  
     while ~currentState.isterminal
-        [a, oa] = chooseaction(Q, currentState.pos(1), currentState.pos(2), actions, probs, epsillon); % Choose action based on position, possible moves and probabilities
+        [a, oa] = chooseaction(Q, currentState.pos(1), currentState.pos(2), actions, probs, epsilon); % Choose action based on position, possible moves and probabilities
         nextState = gwaction(a); % Get nextState based on chosen action
         while ~nextState.isvalid
-            [a, oa] = chooseaction(Q, currentState.pos(1), currentState.pos(2), actions, probs, epsillon);
+            [a, oa] = chooseaction(Q, currentState.pos(1), currentState.pos(2), actions, probs, epsilon);
             nextState = gwaction(a);
         end
         % Update estimated Q-function
-        Q(currentState.pos(1), currentState.pos(2), a) = (1 - epsillon)* Q(currentState.pos(1), currentState.pos(2), a) + ...
-            epsillon * (nextState.feedback + discount * max(Q(nextState.pos(1), nextState.pos(2), :)));
+        Q(currentState.pos(1), currentState.pos(2), a) = (1 - epsilon)* Q(currentState.pos(1), currentState.pos(2), a) + ...
+            epsilon * (nextState.feedback + discount * max(Q(nextState.pos(1), nextState.pos(2), :)));
         currentState = nextState; % Set nextState to currentState
     end
 end
