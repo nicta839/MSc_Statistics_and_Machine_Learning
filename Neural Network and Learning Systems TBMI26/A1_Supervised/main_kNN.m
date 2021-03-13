@@ -15,12 +15,13 @@ dataSetNr = 1; % Change this to load new data
 [X, D, L] = loadDataSet( dataSetNr );
 
 % You can plot and study dataset 1 to 3 by running:
-plotCase(X,D)
-
+if dataSetNr < 4
+    plotCase(X,D)
+end
 %% Select a subset of the training samples
 
 numBins = 2;                    % Number of bins you want to devide your data into
-numSamplesPerLabelPerBin = 100; % Number of samples per label per bin, set to inf for max number (total number is numLabels*numSamplesPerBin)
+numSamplesPerLabelPerBin = Inf; % Number of samples per label per bin, set to inf for max number (total number is numLabels*numSamplesPerBin)
 selectAtRandom = true;          % true = select samples at random, false = select the first features
 
 [XBins, DBins, LBins] = selectTrainingSamples(X, D, L, numSamplesPerLabelPerBin, numBins, selectAtRandom);
@@ -53,10 +54,10 @@ LPredTest  = kNN(XTest , k, XTrain, LTrain);
 %  functions yourself.
 
 % The confucionMatrix
-cM = calcConfusionMatrix(LPredTest, LTest)
+cM = calcConfusionMatrix(LPredTest, LTest);
 
 % The accuracy
-acc = calcAccuracy(cM)
+acc = calcAccuracy(cM);
 
 %% Plot classifications
 %  Note: You should not have to modify this code
