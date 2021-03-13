@@ -58,6 +58,6 @@ while ~currentState.isterminal
     optimalAction = optPolicy(currentState.pos(1), currentState.pos(2));
     nextState = gwaction(optimalAction);
     gwdraw
-    % gwplotarrow(currentState.pos, optimalAction);
+    gwplotarrow(currentState.pos, optimalAction);
     currentState = nextState;
 end

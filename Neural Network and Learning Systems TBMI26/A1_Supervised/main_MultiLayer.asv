@@ -7,7 +7,7 @@
 % 3 = dot cloud 3
 % 4 = OCR data
 
-dataSetNr = 4; % Change this to load new data 
+dataSetNr = 1; % Change this to load new data 
 
 % X - Data samples
 % D - Desired output from classifier for each sample
@@ -54,7 +54,7 @@ numIterations = 800;   % Change this, number of iterations (epochs)
 learningRate  = 0.005; % Change this, your learning rate
 
 W0 = rand(size(XTrain, 2), numHidden) / 1000; % Initialize your weight matrix W
-V0 = rand(size(DTrain, 2), numHidden + 1) / 1000; % Initialize your weight matrix V
+V0 = rand(size(DTrain, 2), numHidden ); % Initialize your weight matrix V
 
 % Run training loop
 tic;
