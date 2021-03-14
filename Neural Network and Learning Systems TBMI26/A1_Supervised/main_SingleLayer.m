@@ -7,7 +7,7 @@
 % 3 = dot cloud 3
 % 4 = OCR data
 
-dataSetNr = 1; % Change this to load new data 
+dataSetNr = 3; % Change this to load new data 
 
 % X - Data samples
 % D - Desired output from classifier for each sample
@@ -17,7 +17,7 @@ dataSetNr = 1; % Change this to load new data
 %% Select a subset of the training samples
 
 numBins = 2;                    % Number of Bins you want to devide your data into
-numSamplesPerLabelPerBin = 400; % Number of samples per label per bin, set to inf for max number (total number is numLabels*numSamplesPerBin)
+numSamplesPerLabelPerBin = inf; % Number of samples per label per bin, set to inf for max number (total number is numLabels*numSamplesPerBin)
 selectAtRandom = true;          % true = select samples at random, false = select the first features
 
 [XBins, DBins, LBins] = selectTrainingSamples(X, D, L, numSamplesPerLabelPerBin, numBins, selectAtRandom );
@@ -40,10 +40,11 @@ LTest  = LBins{2};
 %  Note that the bias must be the last feature for the plot code to work
 
 % The training data
-XTrain = [XTrain; ones(1,size(XBins{1},2))];
+XTrain = horzcat(XTrain, transpose(ones(1,size(XTrain,1))));
 
 % The test data
-XTest = [XTest; ones(1,size(XBins{2},2))];
+XTest = horzcat(XTest, transpose(ones(1,size(XTest,1))));
+
 
 %% Train your single layer network
 %  Note: You need to modify trainSingleLayer() and runSingleLayer()
@@ -51,7 +52,7 @@ XTest = [XTest; ones(1,size(XBins{2},2))];
 
 numIterations = 9000;  % Change this, number of iterations (epochs)
 learningRate  = 0.0001; % Change this, your learning rate
-W0 = rand(size(DTrain, 1), size(XTrain, 1)); % Change this, initialize your weight matrix W % Size depends on X and D
+W0 = rand(size(XTrain, 2), size(DTrain, 2)); % Change this, initialize your weight matrix W % Size depends on X and D
 
 % Run training loop
 tic;
