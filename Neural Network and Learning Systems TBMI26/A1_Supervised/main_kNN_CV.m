@@ -7,7 +7,7 @@
 % 3 = dot cloud 3
 % 4 = OCR data
 
-dataSetNr = 2; % Change this to load new data 
+dataSetNr = 4; % Change this to load new data 
 
 % X - Data samples
 % D - Desired output from classifier for each sample
@@ -85,7 +85,7 @@ end
 % Find the smallest k with the highest average accuracy
 avgAccuracies = transpose(mean(accuracies)); 
 bestAccuraciesInd = find(avgAccuracies == max(avgAccuracies(:)));
-optK = bestAccuraciesInd(1);
+optK = bestAccuraciesInd(1)
 
 % Classify test data
 LPredTrain  = kNN(XTrain , optK, XTrain, LTrain);
@@ -100,7 +100,7 @@ LPredTest  = kNN(XTest , optK, XTrain, LTrain);
 cM = calcConfusionMatrix(LPredTest, LTest);
 
 % The accuracy
-acc = calcAccuracy(cM);
+acc = calcAccuracy(cM)
 
 %% Plot classifications
 %  Note: You should not have to modify this code

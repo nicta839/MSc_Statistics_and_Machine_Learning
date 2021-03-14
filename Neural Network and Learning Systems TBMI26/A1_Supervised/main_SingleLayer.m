@@ -7,7 +7,7 @@
 % 3 = dot cloud 3
 % 4 = OCR data
 
-dataSetNr = 3; % Change this to load new data 
+dataSetNr = 2; % Change this to load new data 
 
 % X - Data samples
 % D - Desired output from classifier for each sample
@@ -50,9 +50,9 @@ XTest = horzcat(XTest, transpose(ones(1,size(XTest,1))));
 %  Note: You need to modify trainSingleLayer() and runSingleLayer()
 %  in order to train the network
 
-numIterations = 9000;  % Change this, number of iterations (epochs)
-learningRate  = 0.0001; % Change this, your learning rate
-W0 = rand(size(XTrain, 2), size(DTrain, 2)); % Change this, initialize your weight matrix W % Size depends on X and D
+numIterations = 8000;  % Change this, number of iterations (epochs)
+learningRate  = 0.001; % Change this, your learning rate
+W0 = rand(size(XTrain, 2), size(DTrain, 2)); % Initialize your weight matrix W (size depends on X and D)
 
 % Run training loop
 tic;
