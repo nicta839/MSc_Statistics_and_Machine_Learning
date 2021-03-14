@@ -1,6 +1,6 @@
 %% Initialization
 %  Init world
-world = 4;
+world = 3;
 gridWorld = gwinit(world);
 
 % Define possible actions and associated probabilities
@@ -15,8 +15,8 @@ Q(:,1,4) = -inf; % Set fourth Matrix in Q first column to -Inf
 
 % Define hyperparameters
 discount = 0.9; 
-epsilon = 0.1;
-nbrEpisodes = 2000;
+learning = 0.2;
+nbrEpisodes = 1000;
 
 
 
@@ -27,7 +27,8 @@ for episode = 1:nbrEpisodes % Iterate over all episodes (2000)
     gwinit(world);
     startState = gwstate; % Initialize startingState
     currentState = startState; % Set startingState to currentState
-    epsilon = getepsilon(episode, nbrEpisodes); % Epsillon changes based on episodes iterated (gets smaller over time, explore -> exploit)  
+    epsilon = getepsilon(episode, nbrEpisodes); % Epsilon changes based on episodes iterated (gets smaller over time, explore -> exploit)  
+    % epsilon = 0.9; % for report
     while ~currentState.isterminal
         [a, oa] = chooseaction(Q, currentState.pos(1), currentState.pos(2), actions, probs, epsilon); % Choose action based on position, possible moves and probabilities
         nextState = gwaction(a); % Get nextState based on chosen action
@@ -36,8 +37,8 @@ for episode = 1:nbrEpisodes % Iterate over all episodes (2000)
             nextState = gwaction(a);
         end
         % Update estimated Q-function
-        Q(currentState.pos(1), currentState.pos(2), a) = (1 - epsilon)* Q(currentState.pos(1), currentState.pos(2), a) + ...
-            epsilon * (nextState.feedback + discount * max(Q(nextState.pos(1), nextState.pos(2), :)));
+        Q(currentState.pos(1), currentState.pos(2), a) = (1 - learning)* Q(currentState.pos(1), currentState.pos(2), a) + ...
+            learning * (nextState.feedback + discount * max(Q(nextState.pos(1), nextState.pos(2), :)));
         currentState = nextState; % Set nextState to currentState
     end
 end
@@ -61,3 +62,11 @@ while ~currentState.isterminal
     gwplotarrow(currentState.pos, optimalAction);
     currentState = nextState;
 end
+%% Report plotting
+%Plot V function landscape
+V = getvalue(Q);
+surf(V)
+% Plot policy in all states
+P = getpolicy(Q);
+gwdraw
+gwdrawpolicy(P)
