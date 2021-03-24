@@ -23,7 +23,7 @@
 \begin{document}
 
 \title{732A75 Advanced Data Mining laboratory 3 report}
-\author{Yuki Washio and Nicolas Taba}
+\author{Yuki Washio (timwa902) and Nicolas Taba (nicta839)}
 \date{\today}
 \maketitle
 
@@ -33,17 +33,17 @@
 
 The aim of this laboratory exercise is to test the limits of the clustering algorithm using the distance metric and understand that the clsutering algorithms can sometimes fail to provide clusters that correspond to classes that we (humans) may intuit better.
 
-In order to illustrate this, we are using the MONK1 dataset.
-[Present the dataset here]. [use link that is in masters bookmarks] Illustrate with an example such as wearing a certain type of clothes and a red tie for example.
+In order to illustrate this, we are using the MONK dataset.
+This dataset presents 432 data points assosciated to 7 categorical attributes for the purposes of classification. [use link that is in masters bookmarks]. The MONK1 dataset is used to try to classify (class 0 or class 1) using the following constraints: a1 = a2 and a5 = 1, where a1, a2, a5 are attributes of the data points.
 
 We will first start an exploratory analysis and clustering using appropriate clustering methods for our problem using the distance as a metric and trying to improve on it as much as possible before turning to assosciation analysis.
 
 
 \section{Clustering}
 
-The dataset presents categorical data. We should use hierarchical methods to create our cluster and obtain the desired 2 clusters.
+The dataset presents categorical data. We should use hierarchical clustering methods to create our clusters and obtain the desired 2 clusters.
 
-We are going to use the average linkage that uses euclidean distance as a metric.
+We are going to use the complete linkage that uses euclidean distance as a metric.
 
 \begin{figure}[H]
 \begin{subfigure}{.5\textwidth}

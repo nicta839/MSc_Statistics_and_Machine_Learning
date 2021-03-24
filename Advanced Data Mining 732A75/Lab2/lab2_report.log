@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.21 (MiKTeX 20.7) (preloaded format=pdflatex 2020.8.21)  4 MAR 2021 16:36
+This is pdfTeX, Version 3.14159265-2.6-1.40.21 (MiKTeX 20.7) (preloaded format=pdflatex 2020.8.21)  24 MAR 2021 12:52
 entering extended mode
 **./lab2_report.tex
 (lab2_report.tex
@@ -425,12 +425,12 @@ LaTeX Info: Redefining \nameref on input line 23.
 Package caption Info: Begin \AtBeginDocument code.
 Package caption Info: float package is loaded.
 Package caption Info: End \AtBeginDocument code.
-<3bins_petalwidth.png, id=23, 564.9105pt x 233.07076pt>
+<3bins_petalwidth.png, id=27, 564.9105pt x 233.07076pt>
 File: 3bins_petalwidth.png Graphic file (type png)
 <use 3bins_petalwidth.png>
 Package pdftex.def Info: 3bins_petalwidth.png  used on input line 49.
 (pdftex.def)             Requested size: 187.90271pt x 77.52527pt.
-<3bins_3cl_output.png, id=25, 290.2845pt x 223.43475pt>
+<3bins_3cl_output.png, id=29, 290.2845pt x 223.43475pt>
 File: 3bins_3cl_output.png Graphic file (type png)
 <use 3bins_3cl_output.png>
 Package pdftex.def Info: 3bins_3cl_output.png  used on input line 56.
@@ -440,7 +440,7 @@ Overfull \hbox (2.61107pt too wide) in paragraph at lines 46--60
 []$[]$ $[]$ 
  []
 
-<3_bins_3cl_apriori_rules.png, id=26, 858.95906pt x 467.49657pt>
+<3_bins_3cl_apriori_rules.png, id=30, 858.95906pt x 467.49657pt>
 File: 3_bins_3cl_apriori_rules.png Graphic file (type png)
 <use 3_bins_3cl_apriori_rules.png>
 Package pdftex.def Info: 3_bins_3cl_apriori_rules.png  used on input line 70.
@@ -449,12 +449,12 @@ Package pdftex.def Info: 3_bins_3cl_apriori_rules.png  used on input line 70.
 
 {C:/Users/nicol/AppData/Local/MiKTeX/pdftex/config/pdftex.map} <./3bins_petalwi
 dth.png> <./3bins_3cl_output.png>]
-<5bins_3cl_output.png, id=42, 348.55219pt x 273.27094pt>
+<5bins_3cl_output.png, id=46, 348.55219pt x 273.27094pt>
 File: 5bins_3cl_output.png Graphic file (type png)
 <use 5bins_3cl_output.png>
 Package pdftex.def Info: 5bins_3cl_output.png  used on input line 95.
 (pdftex.def)             Requested size: 187.90271pt x 147.31807pt.
-<10_bins_3cl_output.png, id=43, 356.0803pt x 274.02374pt>
+<10_bins_3cl_output.png, id=47, 356.0803pt x 274.02374pt>
 File: 10_bins_3cl_output.png Graphic file (type png)
 <use 10_bins_3cl_output.png>
 Package pdftex.def Info: 10_bins_3cl_output.png  used on input line 102.
@@ -469,25 +469,25 @@ Overfull \hbox (2.61107pt too wide) in paragraph at lines 92--113
  []
 
 [2 <./3_bins_3cl_apriori_rules.png>]
-<5_bins_3cl_apriori_rules.png, id=52, 861.2175pt x 478.03593pt>
+<5_bins_3cl_apriori_rules.png, id=56, 861.2175pt x 478.03593pt>
 File: 5_bins_3cl_apriori_rules.png Graphic file (type png)
 <use 5_bins_3cl_apriori_rules.png>
 Package pdftex.def Info: 5_bins_3cl_apriori_rules.png  used on input line 123.
 (pdftex.def)             Requested size: 375.80544pt x 208.60043pt.
  [3 <./5bins_3cl_output.png> <./10_bins_3cl_output.png>]
-<10_bins_3cl_apriori_rules.png, id=60, 617.30624pt x 298.86656pt>
+<10_bins_3cl_apriori_rules.png, id=64, 617.30624pt x 298.86656pt>
 File: 10_bins_3cl_apriori_rules.png Graphic file (type png)
 <use 10_bins_3cl_apriori_rules.png>
 Package pdftex.def Info: 10_bins_3cl_apriori_rules.png  used on input line 133.
 
 (pdftex.def)             Requested size: 375.80544pt x 181.94806pt.
  [4 <./5_bins_3cl_apriori_rules.png> <./10_bins_3cl_apriori_rules.png>]
-<3bins_4cl_output.png, id=72, 334.24875pt x 235.47975pt>
+<3bins_4cl_output.png, id=76, 334.24875pt x 235.47975pt>
 File: 3bins_4cl_output.png Graphic file (type png)
 <use 3bins_4cl_output.png>
 Package pdftex.def Info: 3bins_4cl_output.png  used on input line 155.
 (pdftex.def)             Requested size: 187.90271pt x 132.38158pt.
-<3bins_5cl_output.png, id=73, 314.97675pt x 278.84175pt>
+<3bins_5cl_output.png, id=77, 314.97675pt x 278.84175pt>
 File: 3bins_5cl_output.png Graphic file (type png)
 <use 3bins_5cl_output.png>
 Package pdftex.def Info: 3bins_5cl_output.png  used on input line 162.
@@ -497,13 +497,13 @@ Overfull \hbox (2.61107pt too wide) in paragraph at lines 152--166
 []$[]$ $[]$ 
  []
 
-<3bins_4cl_apriori_rules.png, id=75, 756.57657pt x 665.48625pt>
+<3bins_4cl_apriori_rules.png, id=79, 756.57657pt x 665.48625pt>
 File: 3bins_4cl_apriori_rules.png Graphic file (type png)
 <use 3bins_4cl_apriori_rules.png>
 Package pdftex.def Info: 3bins_4cl_apriori_rules.png  used on input line 177.
 (pdftex.def)             Requested size: 375.80544pt x 330.55908pt.
 [5 <./3bins_4cl_output.png> <./3bins_5cl_output.png>]
-<3bins_5cl_apriori_rules.png, id=83, 749.04843pt x 665.48625pt>
+<3bins_5cl_apriori_rules.png, id=87, 749.04843pt x 665.48625pt>
 File: 3bins_5cl_apriori_rules.png Graphic file (type png)
 <use 3bins_5cl_apriori_rules.png>
 Package pdftex.def Info: 3bins_5cl_apriori_rules.png  used on input line 187.
@@ -515,22 +515,15 @@ Package atveryend Info: Empty hook `AfterLastShipout' on input line 202.
  (lab2_report.aux)
 Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 202.
 Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 202.
-
-
-Package rerunfilecheck Warning: File `lab2_report.out' has changed.
-(rerunfilecheck)                Rerun to get outlines right
-(rerunfilecheck)                or use package `bookmark'.
-
-Package rerunfilecheck Info: Checksums for `lab2_report.out':
-(rerunfilecheck)             Before: 1D711ED4A1DFA5C077A5D10FB826EAB0;376
-(rerunfilecheck)             After:  666EC50A0F8E2456951988AC1FD52BEE;421.
+Package rerunfilecheck Info: File `lab2_report.out' has not changed.
+(rerunfilecheck)             Checksum: 666EC50A0F8E2456951988AC1FD52BEE;421.
 Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 202.
  ) 
 Here is how much of TeX's memory you used:
- 7839 strings out of 481212
- 124971 string characters out of 2905973
+ 7840 strings out of 481212
+ 124982 string characters out of 2905973
  397412 words of memory out of 3000000
- 23288 multiletter control sequences out of 15000+200000
+ 23289 multiletter control sequences out of 15000+200000
  541543 words of font info for 52 fonts, out of 3000000 for 9000
  1141 hyphenation exceptions out of 8191
  43i,8n,43p,541b,482s stack positions out of 5000i,500n,10000p,200000b,50000s
@@ -541,9 +534,9 @@ ublic/amsfonts/cm/cmr10.pfb><C:/Users/nicol/AppData/Local/Programs/MiKTeX/fonts
 /type1/public/amsfonts/cm/cmr12.pfb><C:/Users/nicol/AppData/Local/Programs/MiKT
 eX/fonts/type1/public/amsfonts/cm/cmr17.pfb><C:/Users/nicol/AppData/Local/Progr
 ams/MiKTeX/fonts/type1/public/amsfonts/cm/cmtt12.pfb>
-Output written on lab2_report.pdf (7 pages, 1285994 bytes).
+Output written on lab2_report.pdf (7 pages, 1286434 bytes).
 PDF statistics:
- 125 PDF objects out of 1000 (max. 8388607)
+ 128 PDF objects out of 1000 (max. 8388607)
  22 named destinations out of 1000 (max. 500000)
- 96 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 104 words of extra memory for PDF output out of 10000 (max. 10000000)
 
