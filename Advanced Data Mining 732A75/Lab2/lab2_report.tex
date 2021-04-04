@@ -35,7 +35,7 @@ The aim of this laboratory exercise is to use assosciation analysis to describe 
 
 In this laboratory, we use the iris dataset. This dataset features 50 instances of each 3 classes of flowers (Iris Setosa, Iris Versicolor and Iris Virginica). Each of these data points has data pertaining to the sepal and petal length and width given in cm.
 
-We will be using the seed value 10 whenever prompted.
+We will be using the seed value 10 whenever prompted. We also set the lower bound of minimum support to 0.2 throughout.
 
 
 \section{Using assosciation analysis with optimal parameters}
@@ -74,13 +74,13 @@ We use the apriori algorithm to find rules that have the clusters as consequent.
         }
 \end{figure}
 
-In Fig.~\ref{fig:3bins_3cl_apriori}, we have the 36 best rules for this clustering solution. All 35 first rules point to all three clusters with a confidence of 100\%, with most rules indicating high confidence in identifying cluster 3 and few rules for clusters 2 and 1.
+In Fig.~\ref{fig:3bins_3cl_apriori}, we have the 36 best rules for this clustering solution. All 35 first rules point to all three clusters with a confidence of 100\%, with most rules indicating high confidence in identifying cluster 3 and few rules for clusters 2 and 1. The three best rules concern the petal length  for the Third cluster that is completely correctly identified (rule 1). The other rules that allow us to identify clusters 1 and 2 concern petal length and width and allow a good clustering as the support for these rules is the same than for the classes we clustered earlier in ig.~\ref{fig:sub-second_1}.
 
 This is a good indication that our clustering is correct as several rules can be found to cluster the data to one class using one or many determinant with very high support. The 5 first rules in Fig.~\ref{fig:3bins_3cl_apriori} concern cluster 3 with a support of 50. This indicates that cluster 3 is the setosa class and that this particular class can easily be identified with respect to the others.
 
 The documentation of the dataset indicates that one of the classes is linearly separable from the others whereas the other two are not linearly separable from each other. The result we obtained is thus the expected optimal parameters when we use a very well known dataset. (documentation: \url{https://www.ida.liu.se/~732A75/lab/iris.arff})
 
-\section{Inverstigation of change of bins and cluster numbers}
+\section{Investigation of change of bins and cluster numbers}
 
 We now wish to investigate how the change in number of bins and clusters affects the clustering algorithm and the apriori algorithm. We know from the previous laboratory that the assignment of the correct number of clusters to the number of classes that we believe compose the set is an important factor in how the Kmeans algorithm performs, but we do not know yet how the number of bins affects this performance. We will use the same process as previously with the apriori algorithm to assess these effects.
 
@@ -137,9 +137,11 @@ We now try to find rules assosciated to each clusters for 5 and 10 bins.
         }
 \end{figure}
 
-In Fig.~\ref{fig:5bins_3cl_apriori} we see that the rules with highest confidence mostly point to cluster 1. There are some instances of cluster 3 being a consequent (rule 26 and 27). We can think from this that only 1 class can be clearly said to be dissimilar to the others.
+In Fig.~\ref{fig:5bins_3cl_apriori} we see that the rules with highest confidence mostly point to cluster 1. There are some instances of cluster 3 being a consequent (rule 26 and 27). We can think from this that only 1 class can be clearly said to be dissimilar to the others. The best rules for clustering are marked in red.
 
-In Fig~\ref{fig:10bins_3cl_apriori}, we find only 20 rules with high confidence ($>0.8$) with rules that have all 3 clusters as consequent. However, we will notice that some of these rules are not "good" rules such as rule 1 that has "belonging to class iris-setosa" yielding cluster 1. This is not a good rule. We can ascertain from these rules that the bin number is not the correct one since the rules that we get are not good with some having low support 15 instances for rule 20 for example. 
+In Fig~\ref{fig:10bins_3cl_apriori}, we find only 20 rules with high confidence ($>0.8$) with rules that have all 3 clusters as consequent. However, we will notice that some of these rules are not "good" rules such as rule 1 that has "belonging to class iris-setosa" yielding cluster 1. This is not a good rule. We can ascertain from these rules that the bin number is not the correct one since the rules that we get are not good with some having low support 15 instances for rule 20 for example. The best rules are marked in red.
+
+When we change the number of bins, we move the intervals that were used to differentiate when we only had 3 bins. With different intervals, we also notice that there are some instances where some clusters do not have enough minimum support. For exmaple, in the case of cluster 1, using 5 bins, we have a support of 35/150 which is smaller than the required 0.2. This is why although the confidence in the rules is high, the support is very low and we do not trust these rules.
 
 \subsection{Changing the number of clusters}
 
@@ -191,7 +193,9 @@ We now investigate the rules that are yielded by the apriori algorithm for the p
         }
 \end{figure}
 
-As stated in the previous section, the rules produced here are not good rules. They contain determinants that have the class attribute to establish a rule to a cluster consequent. Although they have high confidence, the support for some of these rules is low with many values below 20. Due to these rules being of poor quality, we are lead to think that the clustering is erroneous.
+As stated in the previous section, the rules produced here are not good rules. They contain determinants that have the class attribute to establish a rule to a cluster consequent. Although they have high confidence, the support for some of these rules is low with many values below 20. Due to these rules being of poor quality, we are lead to think that the clustering is erroneous. The best rules for each clustering are marked in red. Moreover, we will note here that among the best rules, we do not find rules for some clusters. In Fig~\ref{fig:3bins_4cl_apriori}, we do not find rules for the 4th cluster that have high confidence since the clsuter only contains 4 individuals. In \ref{fig:3bins_5cl_apriori}, similarly, we do not find rules for the thrid and fourth clusters.
+
+When we increase the number of clusters, we find clusters with a very small number of cases. This makes it impossible for some cluster elements to have the required minimum support to establish rules for them using assosication analysis.
 
 
 \section{Discussion}
