@@ -1,6 +1,6 @@
 %% Initialization
 %  Init world
-world = 2;
+world = 4;
 gridWorld = gwinit(world);
 
 % Define possible actions and associated probabilities
@@ -15,8 +15,8 @@ Q(:,1,4) = -inf; % Set fourth Matrix in Q first column to -Inf
 
 % Define hyperparameters
 discount = 0.9; 
-learning = 0.9;
-nbrEpisodes = 1500;
+learning = 0.1;
+nbrEpisodes = 10000;
 
 
 
