@@ -74,7 +74,7 @@ t_prob <- pbeta(0.4, a_pos, b_pos)
 # Simulated probability
 set.seed(12345)
 sim_beta <- rbeta(10000, a_pos, b_pos)
-sim_prob <- sum((sim_beta <= 0.4))/ length(sim_beta)
+sim_prob <- 1- sum((sim_beta <= 0.4))/ length(sim_beta)
 
 cat("The theoretical probability is: ", t_prob,"\nThe calculated probability is: ", sim_prob)
 
@@ -97,7 +97,6 @@ plot3 <- ggplot(log_df)+
 
 plot3
 
-# Are we supposed to show something else here. ASK DURING LAB SESSION
 ```
 
 
@@ -105,7 +104,7 @@ plot3
 
 ### 2.a)
 
-In this exercise we perform 10000 draws from the calculated posterio and compare it with the theoretical scaled inverse chi-square posterior distribution.
+In this exercise we perform 10000 draws from the calculated posterior and compare it with the theoretical scaled inverse chi-square posterior distribution.
 ```{r, echo=TRUE}
 # Data provided
 obs <- c(38, 20, 49, 58, 31, 70, 18, 56, 25, 78)
