@@ -138,8 +138,11 @@ equal_tail <- c(quantile(gini, 0.05), quantile(gini, 0.95))
 kernel_density <- density(gini)
 densities_df <- data.frame(x = kernel_density$x, density = kernel_density$y)
 densities_df <- densities_df[order(densities_df$density, decreasing = TRUE), ]
-cutoff <- round(nrow(densities_df) * 0.9)
-densities_df <- densities_df[1:cutoff, ]
+# Must get the densities mass through cumulative sum
+densities_df$cum_mass <- cumsum(densities_df$density)
+cutoff <- 0.9 * tail(densities_df$cum_mass, 1)
+densities_df <- densities_df[which(densities_df$cum_mass <= cutoff), ]
+
 HDPI <- c(min(densities_df$x), max(densities_df$x))
 
 cat("The equal tail interval is: ", equal_tail, "\nThe HDPI interval is: ", HDPI)

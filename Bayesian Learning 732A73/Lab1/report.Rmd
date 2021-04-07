@@ -1,5 +1,5 @@
 ---
-title: "Untitled"
+title: "Bayesian Learning Lab1"
 author: "Nicolas Taba (nicta839) & Yuki Washio (timwa902)"
 date: "06/04/2021"
 output: pdf_document
@@ -184,8 +184,11 @@ equal_tail <- c(quantile(gini, 0.05), quantile(gini, 0.95))
 kernel_density <- density(gini)
 densities_df <- data.frame(x = kernel_density$x, density = kernel_density$y)
 densities_df <- densities_df[order(densities_df$density, decreasing = TRUE), ]
-cutoff <- round(nrow(densities_df) * 0.9)
-densities_df <- densities_df[1:cutoff, ]
+# Must get the densities mass through cumulative sum
+densities_df$cum_mass <- cumsum(densities_df$density)
+cutoff <- 0.9 * tail(densities_df$cum_mass, 1)
+densities_df <- densities_df[which(densities_df$cum_mass <= cutoff), ]
+
 HDPI <- c(min(densities_df$x), max(densities_df$x))
 
 cat("The equal tail interval is: ", equal_tail, "\nThe HDPI interval is: ", HDPI)
@@ -198,7 +201,7 @@ plot_density <- ggplot()+
 plot_density
 ```
 
-We observe that the HDPI is much larger than the equal tails. This is due to a very high mass being present in the tail of the Gini coefficient distribution that skews this measure.
+We observe that the equal tails measure doesn't take well into account the skewness of the distribution whereas the HDPI more accurately takes into account the probability mass present at lower values of the Gini coefficient.
 
 ## 3. Bayesian inference for the concentration parameter in the von Mises distribution
 
