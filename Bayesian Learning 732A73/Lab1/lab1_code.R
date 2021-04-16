@@ -62,13 +62,10 @@ log_odds <- log(sim_beta/ (1-sim_beta))
 log_df <- as.data.frame(log_odds)
 
 plot3 <- ggplot(log_df)+
-  geom_histogram(mapping = aes(x = log_df$log_odds, y = ..density..), bins = 50, fill = "green", color = "black")+
-  geom_density(mapping = aes(x = log_df$log_odds), color = "red", size = 1.5)
+  geom_histogram(mapping = aes(x = log_odds, y = ..density..), bins = 50, fill = "green", color = "black")+
+  geom_density(mapping = aes(x = log_odds, y = ..scaled..), color = "red", size = 1.5)
 
 plot3
-
-# Are we supposed to show something else here. ASK DURING LAB SESSION
-
 
 #########
 ### 2 ###
@@ -105,7 +102,7 @@ sim_sample <- rInvChisq(n_draw, n, tau_sq)
 scl_inv_chisq <- function(n, tau_sq, x){
   frac1 <- ((tau_sq * n/2)^(n/2))/(gamma(n/2))
   frac2 <- (exp((-n * tau_sq)/(2*x)))/(x^(1 + (n/2)))
-  res <- frac1 * frac2
+  res <- frac1 * frac2/ n
   return(res)
 }
 
@@ -114,7 +111,7 @@ scl_inv_chisq <- function(n, tau_sq, x){
 df_sim_sample <- as.data.frame(sim_sample)
 
 plot_chi_sq <- ggplot(df_sim_sample)+
-  geom_histogram(mapping = aes(x = sim_sample, y = ..density..), bins = 50, fill = "green", color = "black")+
+  geom_histogram(mapping = aes(x = sim_sample, y = ..density../(sum(..density..))), bins = 50, fill = "green", color = "black")+
   stat_function(mapping = aes(x = sim_sample), fun = scl_inv_chisq, args = list(n = n, tau_sq = tau_sq), color = "red", size = 1.5)
 
 plot_chi_sq
@@ -125,8 +122,8 @@ gini <- (2 * pnorm(sqrt(sim_sample)/sqrt(2))) - 1
 df_gini <- as.data.frame(gini)
 
 plot_gini <- ggplot(df_gini)+
-  geom_histogram(mapping = aes(x = gini, y = ..density..), bins = 50, fill = "green", color = "black")+
-  geom_density(mapping = aes(x = gini, y = ..density..), color = "red", size = 1.5)
+  geom_histogram(mapping = aes(x = gini, y = ..density../sum(..density..)), bins = 50, fill = "green", color = "black")+
+  geom_density(mapping = aes(x = gini, y = ..density../sum(..density..)), color = "red", size = 1.5)
 
 plot_gini
 
@@ -181,7 +178,7 @@ dist_df <- data.frame(x = kappa_seq ,y = dist)
 
 
 plot_von_mises <- ggplot(dist_df)+
-  geom_line(mapping = aes(x = x, y = y), color = "green")
+  geom_line(mapping = aes(x = x, y = y/sum(dist_df$x)), color = "green")
 
 plot_von_mises
 
@@ -191,3 +188,4 @@ plot_von_mises
 mode <- dist_df[which.max(dist_df$y),]$x
 
 cat("The approximate posterior mode of kappa is: ", mode)
+
