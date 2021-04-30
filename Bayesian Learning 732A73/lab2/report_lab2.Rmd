@@ -337,7 +337,7 @@ for(i in 1:n){
 df_binomPred <- as.data.frame(binom_pred)
 
 binom_plot <- ggplot()+
-  geom_histogram(data = df_binomPred, aes(x=binom_pred))
+  geom_bar(data = df_binomPred, aes(x=binom_pred))
 
 binom_plot
 ```
