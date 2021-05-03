@@ -76,7 +76,7 @@ for (i in 1:nDraws){
 
 # Simulation with improved parameters
 mu_0_improve <- c(-10, 100, -100)
-ohm_0_improve <-  diag(3)
+ohm_0_improve <-  0.1*diag(3)
 nu_0_improve <- 4
 sigma_0_improve<- 1
 
@@ -94,9 +94,9 @@ plot_init
 ################# 1) B ################
 tXX <- t(time_matrix)%*%time_matrix
 beta_hat <- solve(tXX)%*%t(time_matrix)%*%temp_matrix
-mu_n <- solve(tXX + ohm_0) %*% (tXX%*%beta_hat + ohm_0%*%mu_0)
+mu_n <- solve(tXX + ohm_0_improve) %*% (tXX%*%beta_hat + ohm_0_improve%*%mu_0)
 
-ohm_n <- tXX + ohm_0
+ohm_n <- tXX + ohm_0_improve
 
 nu_n <- nu_0 + length(temp_matrix)
 
