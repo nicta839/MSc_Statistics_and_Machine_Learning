@@ -1,0 +1,639 @@
+% Options for packages loaded elsewhere
+\PassOptionsToPackage{unicode}{hyperref}
+\PassOptionsToPackage{hyphens}{url}
+%
+\documentclass[
+]{article}
+\usepackage{lmodern}
+\usepackage{amssymb,amsmath}
+\usepackage{ifxetex,ifluatex}
+\ifnum 0\ifxetex 1\fi\ifluatex 1\fi=0 % if pdftex
+  \usepackage[T1]{fontenc}
+  \usepackage[utf8]{inputenc}
+  \usepackage{textcomp} % provide euro and other symbols
+\else % if luatex or xetex
+  \usepackage{unicode-math}
+  \defaultfontfeatures{Scale=MatchLowercase}
+  \defaultfontfeatures[\rmfamily]{Ligatures=TeX,Scale=1}
+\fi
+% Use upquote if available, for straight quotes in verbatim environments
+\IfFileExists{upquote.sty}{\usepackage{upquote}}{}
+\IfFileExists{microtype.sty}{% use microtype if available
+  \usepackage[]{microtype}
+  \UseMicrotypeSet[protrusion]{basicmath} % disable protrusion for tt fonts
+}{}
+\makeatletter
+\@ifundefined{KOMAClassName}{% if non-KOMA class
+  \IfFileExists{parskip.sty}{%
+    \usepackage{parskip}
+  }{% else
+    \setlength{\parindent}{0pt}
+    \setlength{\parskip}{6pt plus 2pt minus 1pt}}
+}{% if KOMA class
+  \KOMAoptions{parskip=half}}
+\makeatother
+\usepackage{xcolor}
+\IfFileExists{xurl.sty}{\usepackage{xurl}}{} % add URL line breaks if available
+\IfFileExists{bookmark.sty}{\usepackage{bookmark}}{\usepackage{hyperref}}
+\hypersetup{
+  pdftitle={Lab 6 report},
+  pdfauthor={Nicolas Taba \& Yuki Washio},
+  hidelinks,
+  pdfcreator={LaTeX via pandoc}}
+\urlstyle{same} % disable monospaced font for URLs
+\usepackage[margin=1in]{geometry}
+\usepackage{color}
+\usepackage{fancyvrb}
+\newcommand{\VerbBar}{|}
+\newcommand{\VERB}{\Verb[commandchars=\\\{\}]}
+\DefineVerbatimEnvironment{Highlighting}{Verbatim}{commandchars=\\\{\}}
+% Add ',fontsize=\small' for more characters per line
+\usepackage{framed}
+\definecolor{shadecolor}{RGB}{248,248,248}
+\newenvironment{Shaded}{\begin{snugshade}}{\end{snugshade}}
+\newcommand{\AlertTok}[1]{\textcolor[rgb]{0.94,0.16,0.16}{#1}}
+\newcommand{\AnnotationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\AttributeTok}[1]{\textcolor[rgb]{0.77,0.63,0.00}{#1}}
+\newcommand{\BaseNTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
+\newcommand{\BuiltInTok}[1]{#1}
+\newcommand{\CharTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\CommentTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textit{#1}}}
+\newcommand{\CommentVarTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\ConstantTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\ControlFlowTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{\textbf{#1}}}
+\newcommand{\DataTypeTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{#1}}
+\newcommand{\DecValTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
+\newcommand{\DocumentationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\ErrorTok}[1]{\textcolor[rgb]{0.64,0.00,0.00}{\textbf{#1}}}
+\newcommand{\ExtensionTok}[1]{#1}
+\newcommand{\FloatTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
+\newcommand{\FunctionTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\ImportTok}[1]{#1}
+\newcommand{\InformationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\KeywordTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{\textbf{#1}}}
+\newcommand{\NormalTok}[1]{#1}
+\newcommand{\OperatorTok}[1]{\textcolor[rgb]{0.81,0.36,0.00}{\textbf{#1}}}
+\newcommand{\OtherTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{#1}}
+\newcommand{\PreprocessorTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textit{#1}}}
+\newcommand{\RegionMarkerTok}[1]{#1}
+\newcommand{\SpecialCharTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\SpecialStringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\StringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\VariableTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\VerbatimStringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\WarningTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\usepackage{graphicx,grffile}
+\makeatletter
+\def\maxwidth{\ifdim\Gin@nat@width>\linewidth\linewidth\else\Gin@nat@width\fi}
+\def\maxheight{\ifdim\Gin@nat@height>\textheight\textheight\else\Gin@nat@height\fi}
+\makeatother
+% Scale images if necessary, so that they will not overflow the page
+% margins by default, and it is still possible to overwrite the defaults
+% using explicit options in \includegraphics[width, height, ...]{}
+\setkeys{Gin}{width=\maxwidth,height=\maxheight,keepaspectratio}
+% Set default figure placement to htbp
+\makeatletter
+\def\fps@figure{htbp}
+\makeatother
+\setlength{\emergencystretch}{3em} % prevent overfull lines
+\providecommand{\tightlist}{%
+  \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+\setcounter{secnumdepth}{-\maxdimen} % remove section numbering
+
+\title{Lab 6 report}
+\author{Nicolas Taba \& Yuki Washio}
+\date{14/12/2020}
+
+\begin{document}
+\maketitle
+
+\hypertarget{question-1}{%
+\subsection{Question 1}\label{question-1}}
+
+\hypertarget{define-function-to-maximize}{%
+\subsubsection{1 Define function to
+maximize}\label{define-function-to-maximize}}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{f_x <-}\StringTok{ }\ControlFlowTok{function}\NormalTok{(x) \{}
+  \KeywordTok{return}\NormalTok{((x}\OperatorTok{^}\DecValTok{2} \OperatorTok{/}\StringTok{ }\KeywordTok{exp}\NormalTok{(x)) }\OperatorTok{-}\StringTok{ }\DecValTok{2} \OperatorTok{*}\StringTok{ }\KeywordTok{exp}\NormalTok{((}\OperatorTok{-}\NormalTok{(}\DecValTok{9} \OperatorTok{*}\StringTok{ }\KeywordTok{sin}\NormalTok{(x)) }\OperatorTok{/}\StringTok{ }\NormalTok{(x}\OperatorTok{^}\DecValTok{2} \OperatorTok{+}\StringTok{ }\NormalTok{x }\OperatorTok{+}\StringTok{ }\DecValTok{1}\NormalTok{))))}
+\NormalTok{\}}
+\end{Highlighting}
+\end{Shaded}
+
+\hypertarget{define-crossover}{%
+\subsubsection{2 Define crossover()}\label{define-crossover}}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{crossover <-}\StringTok{ }\ControlFlowTok{function}\NormalTok{(x, y) \{}
+  \KeywordTok{return}\NormalTok{((x }\OperatorTok{+}\StringTok{ }\NormalTok{y) }\OperatorTok{/}\StringTok{ }\DecValTok{2}\NormalTok{)}
+\NormalTok{\}}
+\end{Highlighting}
+\end{Shaded}
+
+\hypertarget{define-mutate}{%
+\subsubsection{3 Define mutate()}\label{define-mutate}}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{mutate <-}\StringTok{ }\ControlFlowTok{function}\NormalTok{(x) \{}
+  \KeywordTok{return}\NormalTok{((x}\OperatorTok{^}\DecValTok{2} \OperatorTok{%%}\StringTok{ }\DecValTok{30}\NormalTok{))}
+\NormalTok{\}}
+\end{Highlighting}
+\end{Shaded}
+
+\hypertarget{define-genetic-algorithm}{%
+\subsubsection{4 Define genetic
+algorithm}\label{define-genetic-algorithm}}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{library}\NormalTok{(ggplot2)}
+
+\NormalTok{genetic <-}\StringTok{ }\ControlFlowTok{function}\NormalTok{(maxiter, mutprob) \{}
+  \CommentTok{# a) plot function f in range [0,30]}
+\NormalTok{  my_plot =}\StringTok{ }\KeywordTok{ggplot}\NormalTok{() }\OperatorTok{+}\StringTok{ }\KeywordTok{stat_function}\NormalTok{(}\DataTypeTok{fun=}\NormalTok{f_x) }\OperatorTok{+}\StringTok{ }\KeywordTok{xlim}\NormalTok{(}\DecValTok{0}\NormalTok{,}\DecValTok{30}\NormalTok{) }\OperatorTok{+}\StringTok{ }\KeywordTok{xlab}\NormalTok{(}\StringTok{"x"}\NormalTok{) }\OperatorTok{+}\StringTok{ }\KeywordTok{ylab}\NormalTok{(}\StringTok{"f(x)"}\NormalTok{)}
+\NormalTok{  my_plot}
+  \CommentTok{# b) initial population for the genetic algorithm as X = (0, 5, 10, 15, . . . , 30)}
+\NormalTok{  initial_pop =}\StringTok{ }\KeywordTok{seq}\NormalTok{(}\DecValTok{0}\NormalTok{,}\DecValTok{30}\NormalTok{,}\DecValTok{5}\NormalTok{)}
+\NormalTok{  population =}\StringTok{ }\NormalTok{initial_pop}
+  \CommentTok{# c) compute vector Values that contain the function values for each in population}
+\NormalTok{  function_values_pop =}\StringTok{ }\KeywordTok{f_x}\NormalTok{(population)}
+  \CommentTok{# d) iterate}
+  \ControlFlowTok{for}\NormalTok{ (i }\ControlFlowTok{in} \DecValTok{1}\OperatorTok{:}\NormalTok{maxiter) \{}
+    \CommentTok{# sample two indexes from population}
+\NormalTok{    parents =}\StringTok{ }\KeywordTok{sample}\NormalTok{(}\DecValTok{1}\OperatorTok{:}\KeywordTok{length}\NormalTok{(population), }\DecValTok{2}\NormalTok{)}
+    \CommentTok{# select index with smallest objective function as victim}
+\NormalTok{    victim =}\StringTok{ }\KeywordTok{order}\NormalTok{(function_values_pop)[}\DecValTok{1}\NormalTok{]}
+    \CommentTok{# Parents are used to produce a new kid by crossover. Mutate this kid with probability mutprob (use crossover(), mutate()).}
+\NormalTok{    new_kid =}\StringTok{ }\KeywordTok{crossover}\NormalTok{(parents[}\DecValTok{1}\NormalTok{], parents[}\DecValTok{2}\NormalTok{])}
+    \ControlFlowTok{if}\NormalTok{ (}\KeywordTok{as.logical}\NormalTok{(}\KeywordTok{rbinom}\NormalTok{(}\DecValTok{1}\NormalTok{, }\DataTypeTok{size=}\DecValTok{1}\NormalTok{, }\DataTypeTok{prob=}\NormalTok{mutprob))) \{}
+\NormalTok{      new_kid =}\StringTok{ }\KeywordTok{mutate}\NormalTok{(new_kid) }
+\NormalTok{    \}}
+    \CommentTok{# The victim is replaced by the kid in the population and the vector Values is updated.}
+\NormalTok{    population[victim] =}\StringTok{ }\NormalTok{new_kid}
+\NormalTok{    function_values_pop =}\StringTok{ }\KeywordTok{f_x}\NormalTok{(population)}
+    \CommentTok{# The current maximal value of the objective function is saved.}
+\NormalTok{    max_val =}\StringTok{ }\KeywordTok{max}\NormalTok{(function_values_pop)}
+\NormalTok{  \}}
+  \CommentTok{# e) Add the final observations to the current plot in another colour.}
+\NormalTok{  final_plot =}\StringTok{ }\NormalTok{my_plot }\OperatorTok{+}\StringTok{ }\KeywordTok{geom_point}\NormalTok{(}\KeywordTok{aes}\NormalTok{(}\DataTypeTok{x=}\NormalTok{population, }\DataTypeTok{y=}\NormalTok{function_values_pop), }\DataTypeTok{color=}\StringTok{"red"}\NormalTok{)}
+\NormalTok{  final_plot}
+  \KeywordTok{return}\NormalTok{(}\KeywordTok{list}\NormalTok{(}\DataTypeTok{max_val=}\NormalTok{max_val, }\DataTypeTok{initial_pop=}\NormalTok{initial_pop, }\DataTypeTok{final_pop=}\NormalTok{population, }\DataTypeTok{final_fun_values=}\NormalTok{function_values_pop, }\DataTypeTok{plot=}\NormalTok{final_plot, }\DataTypeTok{maxiter=}\NormalTok{maxiter, }\DataTypeTok{mutprob=}\NormalTok{mutprob))}
+\NormalTok{\}}
+\end{Highlighting}
+\end{Shaded}
+
+We can observe a maximum value at around \(f(1.5) = 0.2\).
+
+\hypertarget{try-out-different-parameter-combinations}{%
+\subsubsection{5 Try out different parameter
+combinations}\label{try-out-different-parameter-combinations}}
+
+\includegraphics{report_lab6_files/figure-latex/unnamed-chunk-5-1.pdf}
+
+\begin{verbatim}
+## 1 
+## maxiter:  10 
+## mutprob:  0.1 
+## initial_pop:  0 5 10 15 20 25 30 
+## final_popp:  5.5 20.25 6.5 15 20 20.25 2.5 
+## max_val:  -0.6380611 
+## 
+## 2 
+## maxiter:  10 
+## mutprob:  0.5 
+## initial_pop:  0 5 10 15 20 25 30 
+## final_popp:  6 9 20.25 15 3 2.5 2.5 
+## max_val:  -0.6380611 
+## 
+## 3 
+## maxiter:  10 
+## mutprob:  0.9 
+## initial_pop:  0 5 10 15 20 25 30 
+## final_popp:  0.25 20.25 20.25 15 20 0.25 6.25 
+## max_val:  -0.3179788 
+## 
+## 4 
+## maxiter:  100 
+## mutprob:  0.1 
+## initial_pop:  0 5 10 15 20 25 30 
+## final_popp:  1.5 1.5 1.5 4 2 2 1.5 
+## max_val:  0.1998964 
+## 
+## 5 
+## maxiter:  100 
+## mutprob:  0.5 
+## initial_pop:  0 5 10 15 20 25 30 
+## final_popp:  1.5 1.5 1.5 1.5 0.25 2 2 
+## max_val:  0.1998964 
+## 
+## 6 
+## maxiter:  100 
+## mutprob:  0.9 
+## initial_pop:  0 5 10 15 20 25 30 
+## final_popp:  12.25 0.25 0.25 0.25 0.25 2 0.25 
+## max_val:  -0.07995372
+\end{verbatim}
+
+We are plotting all possible combinations. The first plot row shows all
+plots where the maximum number of iterations is 10. The second plot row
+shows all plots where the maximum number of iterations is 100. We can
+observe that our genetic algorithm is not able to find the maximum with
+just 10 iterations no matter how big the mutation probability is.
+Though, we can also observe that given 100 iterations our genetic
+algorithm returns good results in most cases. Setting mutation
+probability to \(0.1\) or \(0.5\) returns the correct maximum value. For
+mutation probability \(0.9\) we were not able to hit the true maximum.
+This could be because of the high probability of not mutating the
+crossover result.
+
+\newpage
+
+\hypertarget{question-2}{%
+\subsection{Question 2}\label{question-2}}
+
+\hypertarget{make-a-time-series-plot-of-the-data-with-respect-to-x}{%
+\subsubsection{1: Make a time series plot of the data with respect to
+X}\label{make-a-time-series-plot-of-the-data-with-respect-to-x}}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{data <-}\StringTok{ }\KeywordTok{read.csv}\NormalTok{(}\StringTok{"physical1.csv"}\NormalTok{)}
+\KeywordTok{library}\NormalTok{(ggplot2)}
+
+\NormalTok{plot1 <-}\StringTok{ }\KeywordTok{ggplot}\NormalTok{(data)}\OperatorTok{+}
+\StringTok{  }\KeywordTok{geom_line}\NormalTok{(}\KeywordTok{aes}\NormalTok{(}\DataTypeTok{x=}\NormalTok{X, }\DataTypeTok{y=}\NormalTok{Y, }\DataTypeTok{color =} \StringTok{"Y"}\NormalTok{))}\OperatorTok{+}
+\StringTok{  }\KeywordTok{geom_line}\NormalTok{(}\KeywordTok{aes}\NormalTok{(}\DataTypeTok{x=}\NormalTok{X, }\DataTypeTok{y=}\NormalTok{Z, }\DataTypeTok{color =} \StringTok{"Z"}\NormalTok{))}\OperatorTok{+}
+\StringTok{  }\KeywordTok{labs}\NormalTok{(}\DataTypeTok{x=}\StringTok{"X"}\NormalTok{, }\DataTypeTok{y=}\StringTok{""}\NormalTok{, }\DataTypeTok{title =} \StringTok{"Dependence of Z and Y versus X"}\NormalTok{)}
+
+\NormalTok{plot2 <-}\StringTok{ }\KeywordTok{ggplot}\NormalTok{(data, }\KeywordTok{aes}\NormalTok{(}\DataTypeTok{x=}\NormalTok{Y, }\DataTypeTok{y=}\NormalTok{Z))}\OperatorTok{+}
+\StringTok{  }\KeywordTok{geom_point}\NormalTok{()}\OperatorTok{+}
+\StringTok{  }\KeywordTok{labs}\NormalTok{(}\DataTypeTok{title=}\StringTok{"Z versus Y"}\NormalTok{)}
+
+\NormalTok{plot1}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{report_lab6_files/figure-latex/unnamed-chunk-6-1.pdf}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{plot2}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## Warning: Removed 8 rows containing missing values (geom_point).
+\end{verbatim}
+
+\includegraphics{report_lab6_files/figure-latex/unnamed-chunk-6-2.pdf}
+
+The two processes seem related when plotting the Y and Z variable
+against X. Both processes have a decaying trend with sharp spikes that
+seem to have a delay between them. The second plot represents a plot of
+the Z variable bersus Y. There seems to be no clear correlation between
+these two variables. We can assume that the two processes are
+independent even if they stem from the X variable.
+
+\hypertarget{derive-an-em-algorithm-that-estimates-lambda}{%
+\subsubsection{2: derive an EM algorithm that estimates
+lambda}\label{derive-an-em-algorithm-that-estimates-lambda}}
+
+Variables Y and Z obey the following model:
+
+\[Y_i \sim Exp\left(\frac{X_i}{\lambda}\right) \text{ which has a density function } f(Y_i) = \frac{X_i}{\lambda} \cdot \exp\left( -\frac{X_i}{\lambda} Y_i \right)\]
+and
+
+\[Z_i \sim Exp\left(\frac{X_i}{2\lambda}\right) \text{ which has a density function } f(Z_i) = \frac{X_i}{2\lambda} \cdot \exp\left( -\frac{X_i}{2\lambda} Z_i \right)\]
+
+We then compute the likelihood of this model. The two variables are
+assumed to be independent. This yields a likelihood that is the product
+of the joint probabilities. From it, we then compute the following
+log-likelihood:
+
+\[\ln(L(\lambda | Y,Z))= \sum_{i=1}^{n} \left[\ln\left( \frac{X_i}{\lambda} \right) -\frac{X_i}{\lambda} Y_i \right] + \sum_{i=1}^{n} \left[ \ln\left( \frac{X_i}{2\lambda} \right) - \frac{X_i}{2\lambda} Z_i \right]\]
+
+where the logarithm of a product becomes a sum over all points, the
+exponential term is reduced to itself. We can further simplify this
+expression by computing the first logarithm terms that do not depend on
+\(Y_i\) and \(Z_i\) repsectively in each sum:
+
+\[\ln(L(\lambda | Y,Z)) = \left[  - n\ln(\lambda) + \sum_{i=1}^{n}\ln(X_i) - \sum_{i=1}^{n} \frac{X_i}{\lambda} Y_i \right] + \left[  - n\ln(2\lambda) +  \sum_{i=1}^{n}\ln(X_i) - \sum_{i=1}^{n} \frac{X_i}{2\lambda} Z_i \right]\]
+
+We have missing data in our \(Z_i\) set which makes the previous
+equation impossible to compute. We must impute some data to replace the
+missing data. A reasonable approach would be to replace missing values
+for our random variable with the average value of \(Z_i\) at the missing
+point \(X_i\). The mean value of \(Z_i\) at any \(X_i\) point, under the
+exponential model, is : \(2\lambda/X_i\). The \(\lambda\) in this
+expression is an estimate of it. In practice, we will choose the value
+of lambda of the previous point. We thus separate the set into ``missing
+set'' and ``non-missing set''. We can then compute the expected
+log-likelihood from this information which adds another term to the
+previous equation of the log-likelihood by separating the second term
+into 2. We will be performing the second term sum of the log-likelihood
+from 1 to \(m\) and then calculating the missing values from \(m+1\) to
+\(n\) and replacing the sum over \(Z_i\) by our estimate:
+
+\[ \begin{aligned}
+E\Big[\ln(L(\lambda | Y,Z))\Big] =& \left[ \sum_{i=1}^{n}- n\ln(\lambda) + \ln(X_i)  + \sum_{i=1}^{n} \frac{X_i}{\lambda} Y_i \right] +
+\left[ \sum_{j=1}^{m} - m\ln(2\lambda) + \ln(X_j) - \sum_{j=1}^{m} \frac{X_j}{2\lambda} Z_j \right] + \\
+&\left[ \sum_{k=m+1}^{n} - (n-m)\ln(2\lambda) + \ln(X_k)  - \sum_{k=m+1}^{n} \frac{X_k}{2\lambda} \cdot \frac{2\lambda_k}{X_k} \right]
+\end{aligned}\]
+
+The \(X_k\) terms cancel out. We can now perform the maximization step
+by taking the derivative of the expected log-likelihood with respect to
+\(\lambda\) and setting it to zero. The middle term of each term of this
+expression will be reduced to zero as they do not depend on \(\lambda\)
+and we can factorize out \(1/\lambda\) from the subsequent equation:
+
+\[\frac{d E\Big[\ln(L(\lambda | Y,Z))\Big]}{d\lambda} = 0\]
+
+\[\Longrightarrow \left( - n + \sum_{i=1}^n \frac{X_i}{\lambda} Y_i - m + \sum_{j=1}^{m} \frac{X_j}{2\lambda} Z_j - (n-m) + (n-m) \frac{\lambda_k}{\lambda} \right) = 0 \]
+We factor out again \(1/ \lambda\) and can compute the constants to get
+\(-2n\). By rearranging the terms we obtain the maximum likelihood
+estimate for \(\lambda\) as:
+
+\[\hat\lambda_{ML} = \frac{ \sum_{i=1}^n X_i Y_i + \frac{1}{2} \sum_{j=1}^{m} X_j Z_j + (n-m) \lambda_k}{2n}\]
+
+Where \(Z_j\) is our observed data, m is the number of observed points
+for our random variable and \(\lambda_k\) will be the previous value.
+
+\hypertarget{implement-the-previously-calculated-algorithm-in-r}{%
+\subsubsection{3: Implement the previously calculated algorithm in
+R}\label{implement-the-previously-calculated-algorithm-in-r}}
+
+We implement the EM algorithm with the followinf restrictions:
+\(\lambda_0 = 100\) and the stopping condition is when the change in
+\(\lambda\) is smaller than \(10^{-3}\)
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{floglik <-}\StringTok{ }\ControlFlowTok{function}\NormalTok{(data, lambda, lambda_prev)\{}
+\NormalTok{  X <-}\StringTok{ }\NormalTok{data[,}\DecValTok{1}\NormalTok{]}
+\NormalTok{  Y <-}\StringTok{ }\NormalTok{data[,}\DecValTok{2}\NormalTok{]}
+\NormalTok{  Z <-}\StringTok{ }\NormalTok{data[,}\DecValTok{3}\NormalTok{]}
+  \CommentTok{# missing and not missing data}
+\NormalTok{  index <-}\StringTok{ }\KeywordTok{is.na}\NormalTok{(Z)}
+\NormalTok{  X_missing <-}\StringTok{ }\NormalTok{X[index]}
+\NormalTok{  Z_not <-}\StringTok{ }\NormalTok{Z[}\OperatorTok{!}\NormalTok{index]}
+\NormalTok{  X_not <-}\StringTok{ }\NormalTok{X[}\OperatorTok{!}\NormalTok{index]}
+  \CommentTok{# n and m}
+\NormalTok{  n <-}\StringTok{ }\KeywordTok{length}\NormalTok{(X)}
+\NormalTok{  m <-}\StringTok{ }\KeywordTok{length}\NormalTok{(Z_not)}
+  \CommentTok{# log likelihood}
+\NormalTok{  Y_term <-}\StringTok{ }\NormalTok{(}\OperatorTok{-}\StringTok{ }\NormalTok{n }\OperatorTok{*}\StringTok{ }\KeywordTok{log}\NormalTok{(lambda)) }\OperatorTok{+}\StringTok{ }\KeywordTok{sum}\NormalTok{(}\KeywordTok{log}\NormalTok{(X)) }\OperatorTok{-}\StringTok{ }\KeywordTok{sum}\NormalTok{(X}\OperatorTok{*}\NormalTok{Y}\OperatorTok{/}\NormalTok{lambda)}
+\NormalTok{  Z_not_term <-}\StringTok{ }\NormalTok{(}\OperatorTok{-}\StringTok{ }\NormalTok{m }\OperatorTok{*}\StringTok{ }\KeywordTok{log}\NormalTok{(}\DecValTok{2}\OperatorTok{*}\NormalTok{lambda)) }\OperatorTok{+}\StringTok{ }\KeywordTok{sum}\NormalTok{(}\KeywordTok{log}\NormalTok{(X_not)) }\OperatorTok{-}\StringTok{ }\KeywordTok{sum}\NormalTok{(X_not}\OperatorTok{*}\NormalTok{Z_not}\OperatorTok{/}\NormalTok{(}\DecValTok{2}\OperatorTok{*}\NormalTok{lambda))}
+\NormalTok{  Z_missing_term <-}\StringTok{ }\NormalTok{(}\OperatorTok{-}\NormalTok{(n}\OperatorTok{-}\NormalTok{m)}\OperatorTok{*}\KeywordTok{log}\NormalTok{(}\DecValTok{2}\OperatorTok{*}\NormalTok{lambda)) }\OperatorTok{+}\StringTok{ }\KeywordTok{sum}\NormalTok{(}\KeywordTok{log}\NormalTok{(X_missing)) }\OperatorTok{-}\StringTok{ }\NormalTok{((n}\OperatorTok{-}\NormalTok{m)}\OperatorTok{*}\NormalTok{lambda_prev}\OperatorTok{/}\NormalTok{lambda)}
+  
+\NormalTok{  log_like <-}\StringTok{ }\NormalTok{Y_term }\OperatorTok{+}\StringTok{ }\NormalTok{Z_not_term }\OperatorTok{+}\StringTok{ }\NormalTok{Z_missing_term}
+  \KeywordTok{return}\NormalTok{(log_like)}
+\NormalTok{\}}
+
+\NormalTok{EM_algo <-}\StringTok{ }\ControlFlowTok{function}\NormalTok{(data, eps, k_max, lambda_}\DecValTok{0}\NormalTok{)\{}
+\NormalTok{  X <-}\StringTok{ }\NormalTok{data[,}\DecValTok{1}\NormalTok{]}
+\NormalTok{  Y <-}\StringTok{ }\NormalTok{data[,}\DecValTok{2}\NormalTok{]}
+\NormalTok{  Z <-}\StringTok{ }\NormalTok{data[,}\DecValTok{3}\NormalTok{]}
+  \CommentTok{# missing and not missing data}
+\NormalTok{  index <-}\StringTok{ }\KeywordTok{is.na}\NormalTok{(Z)}
+\NormalTok{  X_missing <-}\StringTok{ }\NormalTok{X[index]}
+\NormalTok{  Z_not <-}\StringTok{ }\NormalTok{Z[}\OperatorTok{!}\NormalTok{index]}
+\NormalTok{  X_not <-}\StringTok{ }\NormalTok{X[}\OperatorTok{!}\NormalTok{index]}
+  \CommentTok{# n and m}
+\NormalTok{  n <-}\StringTok{ }\KeywordTok{length}\NormalTok{(X)}
+\NormalTok{  m <-}\StringTok{ }\KeywordTok{length}\NormalTok{(Z_not)}
+  
+  \CommentTok{#initialize everything}
+\NormalTok{  k <-}\StringTok{ }\DecValTok{1}
+\NormalTok{  lambda_current <-}\StringTok{ }\NormalTok{lambda_}\DecValTok{0}
+\NormalTok{  lambda_prev <-}\StringTok{ }\NormalTok{lambda_}\DecValTok{0}\OperatorTok{+}\DecValTok{1}\OperatorTok{+}\DecValTok{100}\OperatorTok{*}\NormalTok{eps}
+\NormalTok{  llvalcurr <-}\StringTok{ }\KeywordTok{floglik}\NormalTok{(data, lambda_current, lambda_prev)}
+  
+  \CommentTok{# EM algorithm}
+  \ControlFlowTok{while}\NormalTok{( (}\KeywordTok{abs}\NormalTok{(lambda_prev}\OperatorTok{-}\NormalTok{lambda_current) }\OperatorTok{>}\StringTok{ }\NormalTok{eps) }\OperatorTok{&&}\StringTok{  }\NormalTok{(k }\OperatorTok{<}\StringTok{ }\NormalTok{(k_max}\OperatorTok{+}\DecValTok{1}\NormalTok{)) )\{}
+\NormalTok{    lambda_prev <-}\StringTok{ }\NormalTok{lambda_current}
+    
+    \CommentTok{# EM step}
+\NormalTok{    lambda_current <-}\StringTok{ }\NormalTok{(}\KeywordTok{sum}\NormalTok{(X}\OperatorTok{*}\NormalTok{Y) }\OperatorTok{+}\StringTok{ }\KeywordTok{sum}\NormalTok{(X_not}\OperatorTok{*}\NormalTok{Z_not}\OperatorTok{/}\DecValTok{2}\NormalTok{) }\OperatorTok{+}\StringTok{ }\NormalTok{(n}\OperatorTok{-}\NormalTok{m)}\OperatorTok{*}\NormalTok{lambda_current)}\OperatorTok{/}\NormalTok{(}\DecValTok{2}\OperatorTok{*}\NormalTok{n)}
+    \CommentTok{# new log-likelihood}
+\NormalTok{    llvalcurr <-}\StringTok{ }\KeywordTok{floglik}\NormalTok{(data, lambda_current, lambda_prev)}
+\NormalTok{    k <-}\StringTok{ }\NormalTok{k}\OperatorTok{+}\DecValTok{1}
+\NormalTok{  \}}
+\NormalTok{  results <-}\StringTok{ }\KeywordTok{list}\NormalTok{(}\DataTypeTok{steps =}\NormalTok{ k, }\DataTypeTok{lambda =}\NormalTok{ lambda_current)}
+  \KeywordTok{return}\NormalTok{(results)}
+\NormalTok{\}}
+
+\NormalTok{epsilon <-}\StringTok{ }\FloatTok{0.001}
+\NormalTok{my_lambda_}\DecValTok{0}\NormalTok{ <-}\StringTok{ }\DecValTok{100}
+\NormalTok{my_k_max <-}\StringTok{ }\DecValTok{100000}
+
+\NormalTok{res <-}\StringTok{ }\KeywordTok{EM_algo}\NormalTok{(data, }\DataTypeTok{eps =}\NormalTok{ epsilon, }\DataTypeTok{k_max =}\NormalTok{ my_k_max, }\DataTypeTok{lambda_0 =}\NormalTok{ my_lambda_}\DecValTok{0}\NormalTok{)}
+\NormalTok{res}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## $steps
+## [1] 6
+## 
+## $lambda
+## [1] 10.69566
+\end{verbatim}
+
+the optimal \(\lambda\) is 10.696 and it took 6 iterations for the
+algorithm to satisfy our convergence criterion.
+
+\hypertarget{plot-ey-and-ez}{%
+\subsubsection{4 Plot E{[}Y{]} and E{[}Z{]}}\label{plot-ey-and-ez}}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{# Expectation value of random exponential variable is the inverse of its parameter}
+\NormalTok{E_Y <-}\StringTok{ }\NormalTok{res[[}\DecValTok{2}\NormalTok{]]}\OperatorTok{/}\NormalTok{data[,}\DecValTok{1}\NormalTok{]}
+\NormalTok{E_Z <-}\StringTok{ }\NormalTok{(}\DecValTok{2}\OperatorTok{*}\NormalTok{res[[}\DecValTok{2}\NormalTok{]])}\OperatorTok{/}\NormalTok{data[,}\DecValTok{1}\NormalTok{]}
+\NormalTok{df_plot <-}\StringTok{ }\KeywordTok{data.frame}\NormalTok{(}\DataTypeTok{X =}\NormalTok{ data[,}\DecValTok{1}\NormalTok{], }\DataTypeTok{Y =}\NormalTok{ data[,}\DecValTok{2}\NormalTok{], }\DataTypeTok{Z =}\NormalTok{ data[,}\DecValTok{3}\NormalTok{], }\DataTypeTok{E_Y =}\NormalTok{ E_Y, }\DataTypeTok{E_Z =}\NormalTok{ E_Z)}
+
+
+\NormalTok{plot3 <-}\StringTok{ }\KeywordTok{ggplot}\NormalTok{(df_plot)}\OperatorTok{+}
+\StringTok{  }\KeywordTok{geom_line}\NormalTok{(}\KeywordTok{aes}\NormalTok{(}\DataTypeTok{x=}\NormalTok{X, }\DataTypeTok{y=}\NormalTok{Y, }\DataTypeTok{color =} \StringTok{"Y"}\NormalTok{))}\OperatorTok{+}
+\StringTok{  }\KeywordTok{geom_line}\NormalTok{(}\KeywordTok{aes}\NormalTok{(}\DataTypeTok{x=}\NormalTok{X, }\DataTypeTok{y=}\NormalTok{Z, }\DataTypeTok{color =} \StringTok{"Z"}\NormalTok{))}\OperatorTok{+}
+\StringTok{  }\KeywordTok{geom_point}\NormalTok{(}\KeywordTok{aes}\NormalTok{(}\DataTypeTok{x=}\NormalTok{ X, }\DataTypeTok{y=}\NormalTok{E_Y, }\DataTypeTok{color =} \StringTok{"E[Y]"}\NormalTok{))}\OperatorTok{+}
+\StringTok{  }\KeywordTok{geom_point}\NormalTok{(}\KeywordTok{aes}\NormalTok{(}\DataTypeTok{x=}\NormalTok{X, }\DataTypeTok{y=}\NormalTok{E_Z, }\DataTypeTok{color =} \StringTok{"E[Z]"}\NormalTok{))}\OperatorTok{+}
+\StringTok{  }\KeywordTok{labs}\NormalTok{(}\DataTypeTok{x=}\StringTok{"X"}\NormalTok{, }\DataTypeTok{y=}\StringTok{""}\NormalTok{, }\DataTypeTok{title =} \StringTok{"Z and Y versus X and estimates"}\NormalTok{)}
+
+\NormalTok{plot3}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{report_lab6_files/figure-latex/unnamed-chunk-8-1.pdf}
+
+The expected value of our variables seem to follow the general trend of
+the noisy data.. The Y data has peaks that are smaller than our Z data.
+The difference in expectation values between the two processes probably
+takes those differences into account.
+
+\newpage
+
+\hypertarget{appendix-all-code-for-this-report}{%
+\subsection{Appendix: All code for this
+report}\label{appendix-all-code-for-this-report}}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{knitr}\OperatorTok{::}\NormalTok{opts_chunk}\OperatorTok{$}\KeywordTok{set}\NormalTok{(}\DataTypeTok{echo =} \OtherTok{TRUE}\NormalTok{)}
+\NormalTok{f_x <-}\StringTok{ }\ControlFlowTok{function}\NormalTok{(x) \{}
+  \KeywordTok{return}\NormalTok{((x}\OperatorTok{^}\DecValTok{2} \OperatorTok{/}\StringTok{ }\KeywordTok{exp}\NormalTok{(x)) }\OperatorTok{-}\StringTok{ }\DecValTok{2} \OperatorTok{*}\StringTok{ }\KeywordTok{exp}\NormalTok{((}\OperatorTok{-}\NormalTok{(}\DecValTok{9} \OperatorTok{*}\StringTok{ }\KeywordTok{sin}\NormalTok{(x)) }\OperatorTok{/}\StringTok{ }\NormalTok{(x}\OperatorTok{^}\DecValTok{2} \OperatorTok{+}\StringTok{ }\NormalTok{x }\OperatorTok{+}\StringTok{ }\DecValTok{1}\NormalTok{))))}
+\NormalTok{\}}
+\NormalTok{crossover <-}\StringTok{ }\ControlFlowTok{function}\NormalTok{(x, y) \{}
+  \KeywordTok{return}\NormalTok{((x }\OperatorTok{+}\StringTok{ }\NormalTok{y) }\OperatorTok{/}\StringTok{ }\DecValTok{2}\NormalTok{)}
+\NormalTok{\}}
+\NormalTok{mutate <-}\StringTok{ }\ControlFlowTok{function}\NormalTok{(x) \{}
+  \KeywordTok{return}\NormalTok{((x}\OperatorTok{^}\DecValTok{2} \OperatorTok{%%}\StringTok{ }\DecValTok{30}\NormalTok{))}
+\NormalTok{\}}
+\KeywordTok{library}\NormalTok{(ggplot2)}
+
+\NormalTok{genetic <-}\StringTok{ }\ControlFlowTok{function}\NormalTok{(maxiter, mutprob) \{}
+  \CommentTok{# a) plot function f in range [0,30]}
+\NormalTok{  my_plot =}\StringTok{ }\KeywordTok{ggplot}\NormalTok{() }\OperatorTok{+}\StringTok{ }\KeywordTok{stat_function}\NormalTok{(}\DataTypeTok{fun=}\NormalTok{f_x) }\OperatorTok{+}\StringTok{ }\KeywordTok{xlim}\NormalTok{(}\DecValTok{0}\NormalTok{,}\DecValTok{30}\NormalTok{) }\OperatorTok{+}\StringTok{ }\KeywordTok{xlab}\NormalTok{(}\StringTok{"x"}\NormalTok{) }\OperatorTok{+}\StringTok{ }\KeywordTok{ylab}\NormalTok{(}\StringTok{"f(x)"}\NormalTok{)}
+\NormalTok{  my_plot}
+  \CommentTok{# b) initial population for the genetic algorithm as X = (0, 5, 10, 15, . . . , 30)}
+\NormalTok{  initial_pop =}\StringTok{ }\KeywordTok{seq}\NormalTok{(}\DecValTok{0}\NormalTok{,}\DecValTok{30}\NormalTok{,}\DecValTok{5}\NormalTok{)}
+\NormalTok{  population =}\StringTok{ }\NormalTok{initial_pop}
+  \CommentTok{# c) compute vector Values that contain the function values for each in population}
+\NormalTok{  function_values_pop =}\StringTok{ }\KeywordTok{f_x}\NormalTok{(population)}
+  \CommentTok{# d) iterate}
+  \ControlFlowTok{for}\NormalTok{ (i }\ControlFlowTok{in} \DecValTok{1}\OperatorTok{:}\NormalTok{maxiter) \{}
+    \CommentTok{# sample two indexes from population}
+\NormalTok{    parents =}\StringTok{ }\KeywordTok{sample}\NormalTok{(}\DecValTok{1}\OperatorTok{:}\KeywordTok{length}\NormalTok{(population), }\DecValTok{2}\NormalTok{)}
+    \CommentTok{# select index with smallest objective function as victim}
+\NormalTok{    victim =}\StringTok{ }\KeywordTok{order}\NormalTok{(function_values_pop)[}\DecValTok{1}\NormalTok{]}
+    \CommentTok{# Parents are used to produce a new kid by crossover. Mutate this kid with probability mutprob (use crossover(), mutate()).}
+\NormalTok{    new_kid =}\StringTok{ }\KeywordTok{crossover}\NormalTok{(parents[}\DecValTok{1}\NormalTok{], parents[}\DecValTok{2}\NormalTok{])}
+    \ControlFlowTok{if}\NormalTok{ (}\KeywordTok{as.logical}\NormalTok{(}\KeywordTok{rbinom}\NormalTok{(}\DecValTok{1}\NormalTok{, }\DataTypeTok{size=}\DecValTok{1}\NormalTok{, }\DataTypeTok{prob=}\NormalTok{mutprob))) \{}
+\NormalTok{      new_kid =}\StringTok{ }\KeywordTok{mutate}\NormalTok{(new_kid) }
+\NormalTok{    \}}
+    \CommentTok{# The victim is replaced by the kid in the population and the vector Values is updated.}
+\NormalTok{    population[victim] =}\StringTok{ }\NormalTok{new_kid}
+\NormalTok{    function_values_pop =}\StringTok{ }\KeywordTok{f_x}\NormalTok{(population)}
+    \CommentTok{# The current maximal value of the objective function is saved.}
+\NormalTok{    max_val =}\StringTok{ }\KeywordTok{max}\NormalTok{(function_values_pop)}
+\NormalTok{  \}}
+  \CommentTok{# e) Add the final observations to the current plot in another colour.}
+\NormalTok{  final_plot =}\StringTok{ }\NormalTok{my_plot }\OperatorTok{+}\StringTok{ }\KeywordTok{geom_point}\NormalTok{(}\KeywordTok{aes}\NormalTok{(}\DataTypeTok{x=}\NormalTok{population, }\DataTypeTok{y=}\NormalTok{function_values_pop), }\DataTypeTok{color=}\StringTok{"red"}\NormalTok{)}
+\NormalTok{  final_plot}
+  \KeywordTok{return}\NormalTok{(}\KeywordTok{list}\NormalTok{(}\DataTypeTok{max_val=}\NormalTok{max_val, }\DataTypeTok{initial_pop=}\NormalTok{initial_pop, }\DataTypeTok{final_pop=}\NormalTok{population, }\DataTypeTok{final_fun_values=}\NormalTok{function_values_pop, }\DataTypeTok{plot=}\NormalTok{final_plot, }\DataTypeTok{maxiter=}\NormalTok{maxiter, }\DataTypeTok{mutprob=}\NormalTok{mutprob))}
+\NormalTok{\}}
+\NormalTok{max_iterations =}\StringTok{ }\KeywordTok{c}\NormalTok{(}\DecValTok{10}\NormalTok{, }\DecValTok{100}\NormalTok{)}
+\NormalTok{mutation_probabilities =}\StringTok{ }\KeywordTok{c}\NormalTok{(}\FloatTok{0.1}\NormalTok{, }\FloatTok{0.5}\NormalTok{, }\FloatTok{0.9}\NormalTok{)}
+
+\KeywordTok{set.seed}\NormalTok{(}\DecValTok{1234567890}\NormalTok{)}
+\NormalTok{res1 =}\StringTok{ }\KeywordTok{genetic}\NormalTok{(}\DecValTok{10}\NormalTok{, }\FloatTok{0.1}\NormalTok{)}
+\NormalTok{res2 =}\StringTok{ }\KeywordTok{genetic}\NormalTok{(}\DecValTok{10}\NormalTok{, }\FloatTok{0.5}\NormalTok{)}
+\NormalTok{res3 =}\StringTok{ }\KeywordTok{genetic}\NormalTok{(}\DecValTok{10}\NormalTok{, }\FloatTok{0.9}\NormalTok{)}
+\NormalTok{res4 =}\StringTok{ }\KeywordTok{genetic}\NormalTok{(}\DecValTok{100}\NormalTok{, }\FloatTok{0.1}\NormalTok{)}
+\NormalTok{res5 =}\StringTok{ }\KeywordTok{genetic}\NormalTok{(}\DecValTok{100}\NormalTok{, }\FloatTok{0.5}\NormalTok{)}
+\NormalTok{res6 =}\StringTok{ }\KeywordTok{genetic}\NormalTok{(}\DecValTok{100}\NormalTok{, }\FloatTok{0.9}\NormalTok{)}
+\NormalTok{results =}\StringTok{ }\KeywordTok{list}\NormalTok{(res1, res2, res3, res4, res5, res6)}
+
+\KeywordTok{library}\NormalTok{(gridExtra)}
+\KeywordTok{grid.arrange}\NormalTok{(res1}\OperatorTok{$}\NormalTok{plot, res2}\OperatorTok{$}\NormalTok{plot, res3}\OperatorTok{$}\NormalTok{plot, res4}\OperatorTok{$}\NormalTok{plot, res5}\OperatorTok{$}\NormalTok{plot, res6}\OperatorTok{$}\NormalTok{plot, }\DataTypeTok{ncol=}\DecValTok{3}\NormalTok{)}
+
+\ControlFlowTok{for}\NormalTok{ (i }\ControlFlowTok{in} \DecValTok{1}\OperatorTok{:}\KeywordTok{length}\NormalTok{(results)) \{}
+  \KeywordTok{cat}\NormalTok{(i, }\StringTok{"}\CharTok{\textbackslash{}n}\StringTok{maxiter: "}\NormalTok{, results[[i]]}\OperatorTok{$}\NormalTok{maxiter, }\StringTok{"}\CharTok{\textbackslash{}n}\StringTok{mutprob: "}\NormalTok{, results[[i]]}\OperatorTok{$}\NormalTok{mutprob, }\StringTok{"}\CharTok{\textbackslash{}n}\StringTok{initial_pop: "}\NormalTok{, results[[i]]}\OperatorTok{$}\NormalTok{initial_pop, }\StringTok{"}\CharTok{\textbackslash{}n}\StringTok{final_popp: "}\NormalTok{, results[[i]]}\OperatorTok{$}\NormalTok{final_pop, }\StringTok{"}\CharTok{\textbackslash{}n}\StringTok{max_val: "}\NormalTok{, results[[i]]}\OperatorTok{$}\NormalTok{max_val, }\StringTok{"}\CharTok{\textbackslash{}n\textbackslash{}n}\StringTok{"}\NormalTok{)}
+\NormalTok{\}}
+\NormalTok{data <-}\StringTok{ }\KeywordTok{read.csv}\NormalTok{(}\StringTok{"physical1.csv"}\NormalTok{)}
+\KeywordTok{library}\NormalTok{(ggplot2)}
+
+\NormalTok{plot1 <-}\StringTok{ }\KeywordTok{ggplot}\NormalTok{(data)}\OperatorTok{+}
+\StringTok{  }\KeywordTok{geom_line}\NormalTok{(}\KeywordTok{aes}\NormalTok{(}\DataTypeTok{x=}\NormalTok{X, }\DataTypeTok{y=}\NormalTok{Y, }\DataTypeTok{color =} \StringTok{"Y"}\NormalTok{))}\OperatorTok{+}
+\StringTok{  }\KeywordTok{geom_line}\NormalTok{(}\KeywordTok{aes}\NormalTok{(}\DataTypeTok{x=}\NormalTok{X, }\DataTypeTok{y=}\NormalTok{Z, }\DataTypeTok{color =} \StringTok{"Z"}\NormalTok{))}\OperatorTok{+}
+\StringTok{  }\KeywordTok{labs}\NormalTok{(}\DataTypeTok{x=}\StringTok{"X"}\NormalTok{, }\DataTypeTok{y=}\StringTok{""}\NormalTok{, }\DataTypeTok{title =} \StringTok{"Dependence of Z and Y versus X"}\NormalTok{)}
+
+\NormalTok{plot2 <-}\StringTok{ }\KeywordTok{ggplot}\NormalTok{(data, }\KeywordTok{aes}\NormalTok{(}\DataTypeTok{x=}\NormalTok{Y, }\DataTypeTok{y=}\NormalTok{Z))}\OperatorTok{+}
+\StringTok{  }\KeywordTok{geom_point}\NormalTok{()}\OperatorTok{+}
+\StringTok{  }\KeywordTok{labs}\NormalTok{(}\DataTypeTok{title=}\StringTok{"Z versus Y"}\NormalTok{)}
+
+\NormalTok{plot1}
+\NormalTok{plot2}
+
+\NormalTok{floglik <-}\StringTok{ }\ControlFlowTok{function}\NormalTok{(data, lambda, lambda_prev)\{}
+\NormalTok{  X <-}\StringTok{ }\NormalTok{data[,}\DecValTok{1}\NormalTok{]}
+\NormalTok{  Y <-}\StringTok{ }\NormalTok{data[,}\DecValTok{2}\NormalTok{]}
+\NormalTok{  Z <-}\StringTok{ }\NormalTok{data[,}\DecValTok{3}\NormalTok{]}
+  \CommentTok{# missing and not missing data}
+\NormalTok{  index <-}\StringTok{ }\KeywordTok{is.na}\NormalTok{(Z)}
+\NormalTok{  X_missing <-}\StringTok{ }\NormalTok{X[index]}
+\NormalTok{  Z_not <-}\StringTok{ }\NormalTok{Z[}\OperatorTok{!}\NormalTok{index]}
+\NormalTok{  X_not <-}\StringTok{ }\NormalTok{X[}\OperatorTok{!}\NormalTok{index]}
+  \CommentTok{# n and m}
+\NormalTok{  n <-}\StringTok{ }\KeywordTok{length}\NormalTok{(X)}
+\NormalTok{  m <-}\StringTok{ }\KeywordTok{length}\NormalTok{(Z_not)}
+  \CommentTok{# log likelihood}
+\NormalTok{  Y_term <-}\StringTok{ }\NormalTok{(}\OperatorTok{-}\StringTok{ }\NormalTok{n }\OperatorTok{*}\StringTok{ }\KeywordTok{log}\NormalTok{(lambda)) }\OperatorTok{+}\StringTok{ }\KeywordTok{sum}\NormalTok{(}\KeywordTok{log}\NormalTok{(X)) }\OperatorTok{-}\StringTok{ }\KeywordTok{sum}\NormalTok{(X}\OperatorTok{*}\NormalTok{Y}\OperatorTok{/}\NormalTok{lambda)}
+\NormalTok{  Z_not_term <-}\StringTok{ }\NormalTok{(}\OperatorTok{-}\StringTok{ }\NormalTok{m }\OperatorTok{*}\StringTok{ }\KeywordTok{log}\NormalTok{(}\DecValTok{2}\OperatorTok{*}\NormalTok{lambda)) }\OperatorTok{+}\StringTok{ }\KeywordTok{sum}\NormalTok{(}\KeywordTok{log}\NormalTok{(X_not)) }\OperatorTok{-}\StringTok{ }\KeywordTok{sum}\NormalTok{(X_not}\OperatorTok{*}\NormalTok{Z_not}\OperatorTok{/}\NormalTok{(}\DecValTok{2}\OperatorTok{*}\NormalTok{lambda))}
+\NormalTok{  Z_missing_term <-}\StringTok{ }\NormalTok{(}\OperatorTok{-}\NormalTok{(n}\OperatorTok{-}\NormalTok{m)}\OperatorTok{*}\KeywordTok{log}\NormalTok{(}\DecValTok{2}\OperatorTok{*}\NormalTok{lambda)) }\OperatorTok{+}\StringTok{ }\KeywordTok{sum}\NormalTok{(}\KeywordTok{log}\NormalTok{(X_missing)) }\OperatorTok{-}\StringTok{ }\NormalTok{((n}\OperatorTok{-}\NormalTok{m)}\OperatorTok{*}\NormalTok{lambda_prev}\OperatorTok{/}\NormalTok{lambda)}
+  
+\NormalTok{  log_like <-}\StringTok{ }\NormalTok{Y_term }\OperatorTok{+}\StringTok{ }\NormalTok{Z_not_term }\OperatorTok{+}\StringTok{ }\NormalTok{Z_missing_term}
+  \KeywordTok{return}\NormalTok{(log_like)}
+\NormalTok{\}}
+
+\NormalTok{EM_algo <-}\StringTok{ }\ControlFlowTok{function}\NormalTok{(data, eps, k_max, lambda_}\DecValTok{0}\NormalTok{)\{}
+\NormalTok{  X <-}\StringTok{ }\NormalTok{data[,}\DecValTok{1}\NormalTok{]}
+\NormalTok{  Y <-}\StringTok{ }\NormalTok{data[,}\DecValTok{2}\NormalTok{]}
+\NormalTok{  Z <-}\StringTok{ }\NormalTok{data[,}\DecValTok{3}\NormalTok{]}
+  \CommentTok{# missing and not missing data}
+\NormalTok{  index <-}\StringTok{ }\KeywordTok{is.na}\NormalTok{(Z)}
+\NormalTok{  X_missing <-}\StringTok{ }\NormalTok{X[index]}
+\NormalTok{  Z_not <-}\StringTok{ }\NormalTok{Z[}\OperatorTok{!}\NormalTok{index]}
+\NormalTok{  X_not <-}\StringTok{ }\NormalTok{X[}\OperatorTok{!}\NormalTok{index]}
+  \CommentTok{# n and m}
+\NormalTok{  n <-}\StringTok{ }\KeywordTok{length}\NormalTok{(X)}
+\NormalTok{  m <-}\StringTok{ }\KeywordTok{length}\NormalTok{(Z_not)}
+  
+  \CommentTok{#initialize everything}
+\NormalTok{  k <-}\StringTok{ }\DecValTok{1}
+\NormalTok{  lambda_current <-}\StringTok{ }\NormalTok{lambda_}\DecValTok{0}
+\NormalTok{  lambda_prev <-}\StringTok{ }\NormalTok{lambda_}\DecValTok{0}\OperatorTok{+}\DecValTok{1}\OperatorTok{+}\DecValTok{100}\OperatorTok{*}\NormalTok{eps}
+\NormalTok{  llvalcurr <-}\StringTok{ }\KeywordTok{floglik}\NormalTok{(data, lambda_current, lambda_prev)}
+  
+  \CommentTok{# EM algorithm}
+  \ControlFlowTok{while}\NormalTok{( (}\KeywordTok{abs}\NormalTok{(lambda_prev}\OperatorTok{-}\NormalTok{lambda_current) }\OperatorTok{>}\StringTok{ }\NormalTok{eps) }\OperatorTok{&&}\StringTok{  }\NormalTok{(k }\OperatorTok{<}\StringTok{ }\NormalTok{(k_max}\OperatorTok{+}\DecValTok{1}\NormalTok{)) )\{}
+\NormalTok{    lambda_prev <-}\StringTok{ }\NormalTok{lambda_current}
+    
+    \CommentTok{# EM step}
+\NormalTok{    lambda_current <-}\StringTok{ }\NormalTok{(}\KeywordTok{sum}\NormalTok{(X}\OperatorTok{*}\NormalTok{Y) }\OperatorTok{+}\StringTok{ }\KeywordTok{sum}\NormalTok{(X_not}\OperatorTok{*}\NormalTok{Z_not}\OperatorTok{/}\DecValTok{2}\NormalTok{) }\OperatorTok{+}\StringTok{ }\NormalTok{(n}\OperatorTok{-}\NormalTok{m)}\OperatorTok{*}\NormalTok{lambda_current)}\OperatorTok{/}\NormalTok{(}\DecValTok{2}\OperatorTok{*}\NormalTok{n)}
+    \CommentTok{# new log-likelihood}
+\NormalTok{    llvalcurr <-}\StringTok{ }\KeywordTok{floglik}\NormalTok{(data, lambda_current, lambda_prev)}
+\NormalTok{    k <-}\StringTok{ }\NormalTok{k}\OperatorTok{+}\DecValTok{1}
+\NormalTok{  \}}
+\NormalTok{  results <-}\StringTok{ }\KeywordTok{list}\NormalTok{(}\DataTypeTok{steps =}\NormalTok{ k, }\DataTypeTok{lambda =}\NormalTok{ lambda_current)}
+  \KeywordTok{return}\NormalTok{(results)}
+\NormalTok{\}}
+
+\NormalTok{epsilon <-}\StringTok{ }\FloatTok{0.001}
+\NormalTok{my_lambda_}\DecValTok{0}\NormalTok{ <-}\StringTok{ }\DecValTok{100}
+\NormalTok{my_k_max <-}\StringTok{ }\DecValTok{100000}
+
+\NormalTok{res <-}\StringTok{ }\KeywordTok{EM_algo}\NormalTok{(data, }\DataTypeTok{eps =}\NormalTok{ epsilon, }\DataTypeTok{k_max =}\NormalTok{ my_k_max, }\DataTypeTok{lambda_0 =}\NormalTok{ my_lambda_}\DecValTok{0}\NormalTok{)}
+\NormalTok{res}
+\CommentTok{# Expectation value of random exponential variable is the inverse of its parameter}
+\NormalTok{E_Y <-}\StringTok{ }\NormalTok{res[[}\DecValTok{2}\NormalTok{]]}\OperatorTok{/}\NormalTok{data[,}\DecValTok{1}\NormalTok{]}
+\NormalTok{E_Z <-}\StringTok{ }\NormalTok{(}\DecValTok{2}\OperatorTok{*}\NormalTok{res[[}\DecValTok{2}\NormalTok{]])}\OperatorTok{/}\NormalTok{data[,}\DecValTok{1}\NormalTok{]}
+\NormalTok{df_plot <-}\StringTok{ }\KeywordTok{data.frame}\NormalTok{(}\DataTypeTok{X =}\NormalTok{ data[,}\DecValTok{1}\NormalTok{], }\DataTypeTok{Y =}\NormalTok{ data[,}\DecValTok{2}\NormalTok{], }\DataTypeTok{Z =}\NormalTok{ data[,}\DecValTok{3}\NormalTok{], }\DataTypeTok{E_Y =}\NormalTok{ E_Y, }\DataTypeTok{E_Z =}\NormalTok{ E_Z)}
+
+
+\NormalTok{plot3 <-}\StringTok{ }\KeywordTok{ggplot}\NormalTok{(df_plot)}\OperatorTok{+}
+\StringTok{  }\KeywordTok{geom_line}\NormalTok{(}\KeywordTok{aes}\NormalTok{(}\DataTypeTok{x=}\NormalTok{X, }\DataTypeTok{y=}\NormalTok{Y, }\DataTypeTok{color =} \StringTok{"Y"}\NormalTok{))}\OperatorTok{+}
+\StringTok{  }\KeywordTok{geom_line}\NormalTok{(}\KeywordTok{aes}\NormalTok{(}\DataTypeTok{x=}\NormalTok{X, }\DataTypeTok{y=}\NormalTok{Z, }\DataTypeTok{color =} \StringTok{"Z"}\NormalTok{))}\OperatorTok{+}
+\StringTok{  }\KeywordTok{geom_point}\NormalTok{(}\KeywordTok{aes}\NormalTok{(}\DataTypeTok{x=}\NormalTok{ X, }\DataTypeTok{y=}\NormalTok{E_Y, }\DataTypeTok{color =} \StringTok{"E[Y]"}\NormalTok{))}\OperatorTok{+}
+\StringTok{  }\KeywordTok{geom_point}\NormalTok{(}\KeywordTok{aes}\NormalTok{(}\DataTypeTok{x=}\NormalTok{X, }\DataTypeTok{y=}\NormalTok{E_Z, }\DataTypeTok{color =} \StringTok{"E[Z]"}\NormalTok{))}\OperatorTok{+}
+\StringTok{  }\KeywordTok{labs}\NormalTok{(}\DataTypeTok{x=}\StringTok{"X"}\NormalTok{, }\DataTypeTok{y=}\StringTok{""}\NormalTok{, }\DataTypeTok{title =} \StringTok{"Z and Y versus X and estimates"}\NormalTok{)}
+
+\NormalTok{plot3}
+\end{Highlighting}
+\end{Shaded}
+
+\end{document}

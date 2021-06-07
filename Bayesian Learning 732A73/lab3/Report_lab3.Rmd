@@ -150,6 +150,7 @@ The coefficicents that are marked as significant are those with three stars in t
 ### Bayesian analysis of Poisson regression
 
 ```{r}
+############# B ############
 library(mvtnorm)
 
 log_posterior <- function(Beta, X, y, mu, sigma){
@@ -261,6 +262,7 @@ From the convergence graphs produced, we can see that all chains have converged 
 ### SImulation and probability of no-bidders
 
 ```{r}
+################ D #################
 params <- c(1,1,1,1,0,1,0,1,0.7) # added 1 for const/bias
 artif_data <- exp(new_beta[1000:nrow(new_beta), ] %*% params)
 
