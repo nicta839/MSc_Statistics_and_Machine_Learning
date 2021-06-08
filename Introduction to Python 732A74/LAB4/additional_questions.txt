@@ -1,0 +1,22 @@
+1. In what way did you "clean up" or divide up the text into words (in the program; the text files should be leftunaffected)? 
+   This does not have to be perfect in any sense, but it should at least avoid counting "lord","Lord" and "lord." as different words.
+
+A: Our approach is to remove all non-alphabetical characters from the text. Thus, we use regex to substitute each non-alphabetical
+   character with a space character. The issue with this rather simple approach is that we expect to find irregular words like "s"
+   because for instance "there's" will be transformed to "there s". We could implement multiple rules to figure out these edge cases, 
+   but we will stick with the simple approach for now. In addition to our transformation we also lower all text to prevent counting
+   "lord" and "Lord" as different words.
+
+2. Which data structures have you used (such as lists, tuples, dictionaries, sets, ...)? Why does that choicemake sense? 
+   You do not have to do any extensive research on the topics, or try to find exotic modern datastructures, 
+   but you should reflect on which of the standard data types (or variants thereof) make sense. 
+   If you have tried some other solution and updated your code later on, feel free to discuss the effects!
+
+A: - The text will be transformed from one big string to a list of each word in the text which makes it easy to iterate over the words.
+   - Finding unique words is easy. We just transform our list of words to a set and get all unique words. 
+   - For keeping track on how often a word appears in the text we create a tuple with unique word as first and occurances as second entry.
+     These tuples are sorted by occurance and stored in a list. This way we can easily access each word and get the number of occurances in the text.
+   - For keeping track of most commonly followed words we are using a similar data structure. Each unique word will be as key in a dictionary
+     and each unique word following our word will also be a tuple containing the word itself and its occurances. 
+     Thus we can access each unique word as key in our dictionary and get a sorted list of tuples as values. 
+  
