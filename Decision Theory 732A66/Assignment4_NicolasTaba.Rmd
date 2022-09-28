@@ -1,0 +1,131 @@
+---
+title: "Assignment_4_NicolasTaba"
+author: "Nicolas Taba (nicta839)"
+date: "10/12/2021"
+output: pdf_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+
+## 1
+
+### A
+
+The marginal of a guassian random variable conditionned on another gaussian is a gaussian. The variance is the square root of the sum of squared variances.
+
+
+```{r}
+budget <- 120000
+mu <- 115000
+sigma <- sqrt(12000^2 + 9000^2)
+
+
+```
+
+We set as hypothesis:
+
+* H0: mu < budget
+* H1: mu >= budget
+
+The prior odds is the ratio between $p(H_0|H0)$ and $p(H_1|H0)$
+
+```{r}
+odds_prior <- (1-pnorm(budget, mean = mu, sd = sigma))/pnorm(budget, mean = mu, sd = sigma)
+
+print(odds_prior)
+```
+
+The prior odds is smaller than 1 so we go in favor of $H_1$ in the prior sense.
+
+### B
+
+THe normal distribution is part of the conjugate distribution family. The posterior distribution will also be normal in our case. We use formulas derived in previous courses (Bayesian learning) to calculate the posterior parameters.
+
+```{r}
+n <- 6
+sigma_0 <- 9000
+x_bar <- 121000
+
+precision <- sqrt((n/sigma^2) + (1/sigma_0^2))
+tau <- 1/precision
+
+
+w <- (n/sigma^2)/(precision^2)
+mu_n <- w*x_bar + (1-w)*mu
+
+# posterior odds
+odds_posterior <- (1-pnorm(budget, mean = mu_n, sd = tau^2))/pnorm(budget, mean = mu_n, sd = tau^2)
+
+# Bayes factor
+BF <- odds_posterior/odds_prior
+# I suspect some kind of rounding issue due to large numbers being squared
+print(BF)
+```
+
+### C
+
+```{r}
+#posterior probability from meeting 15 notes in DT
+
+post_prob <- BF/(BF+odds_prior)
+
+# expected loss given we think H0 but it turns out that H1
+cost_1 <- post_prob * 4000
+# expected loss given we think H1 but it turns out that H0
+cost_2 <- (1 - post_prob) * 6000
+
+print(cost_1)
+print(cost_2)
+```
+
+When minimizing for expected loss, we should reject $H_0$ and assume that we will go over the budget
+
+## Exercise 2
+
+### A
+
+For normal data (known mean) with an Inverse Gamma prior, the posterior distribution is also an Inverse Gamma distribution with parameters $$\alpha^* = \alpha + n/2 $$ and $$\beta^* = \beta + \sum_{i=1}^{n} \frac{(x_i - \mu)^2}{2}$$.
+
+Furthermore for 0-1 loss, we choose the posterior distribution mode as the point estimate (meeting 14-15). The posterior mode for an Inverse Gamma distribution is: $\beta/(\alpha+1)$.
+
+```{r}
+# mean should be 1 since it's assumed to be exactly 1kg
+# The difference in point estimate is marginal
+vect <- c(1.0076, 1.0015, 0.9971)
+# mean_est <- mean(vect)
+mean_est <- 1
+dev_est <- sd(vect)
+
+alpha <- 2
+beta <- 10^(-5)
+
+summation <- sum(((vect - mean_est)^2)/2)
+
+numerator <- beta + summation
+denominator <- alpha + (3/2) + 1
+
+mode <- numerator/denominator
+print(mode)
+```
+
+
+### B
+
+For this exercise, the functional form of the prior density function is the same than an Inverse Gamma (although undefined as one of the parameters is null). We can however continue analytically to use the basis of the functional form as the posterior distribution parameters are non-zero.
+
+```{r}
+alpha_star <- 3/2
+beta_star <- summation
+
+mode2 <- beta_star/ (alpha_star+1)
+print(mode2)
+
+```
+
+
+## Disclosure of cooperation
+
+This work was discussed with Rojan Karakaya, Yuki Washio and Alejo Perez

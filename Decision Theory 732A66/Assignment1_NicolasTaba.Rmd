@@ -1,0 +1,53 @@
+---
+title: "Decision theory: Assignment 1"
+author: Nicolas Taba (nicta839)
+date: "09/10/2021"
+output: pdf_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## Exercise 1
+
+The process of counting independent increments is represented by a Poisson process (Meeting 2). We will use the following distribution:
+
+$$ p(k=380 | t=2, \lambda = 5 \cdot s) = \frac{e^{- \lambda t} [\lambda t]^k}{k!}$$
+where $k$ is the realized number of customers during the time period (380), $\lambda$ is the parameter that depends on the speed $s$ (30, 40, 50) and the number of workers (5). The time interval for the relaization is $t=2$. We take particular note here that we must take this time parameter into account in the lambda term because we are looking at 2 time units (2hours).
+
+For the priors, we choose them to be 0.25 and 0.50 respectively for speeds 30, 50 and 40 as implied by the test of the exercise.
+
+We set out to calculate the posterior probabilities.
+
+```{r}
+# setting up constants
+t <- 2
+k <- 380
+s <- c(30, 40, 50)
+w <- 5
+priors <- c(0.25, 0.5, 0.25)
+wt <- w*t
+lik <- rep(0, 3)
+post <- rep(0,3)
+# calculating likelihoods and posteriors
+for(i in 1:3){
+  lik[i] <- dpois(x=k, lambda = (s[i]*wt))
+  post[i] <- lik[i] * priors[i]
+}
+
+# normalize posterior
+post_norm <- post/sum(post)
+
+post_norm
+
+```
+
+These are the expected normalized posterior probabilities of the exercise.
+
+## Exercise 2
+
+(from next page on)
+
+
+

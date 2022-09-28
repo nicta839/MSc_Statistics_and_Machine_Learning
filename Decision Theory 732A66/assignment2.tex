@@ -1,0 +1,178 @@
+%++++++++++++++++++++++++++++++++++++++++s\\
+\documentclass[letterpaper,12pt]{article}
+\usepackage{tabularx} % extra features for tabular environment
+\usepackage{amsmath}  % improve math presentation
+\usepackage{graphicx} % takes care of graphic including machinery
+\usepackage[margin=1in,letterpaper]{geometry} % decreases margins
+\usepackage{cite} % takes care of citations
+\usepackage[final]{hyperref} % adds hyper links inside the generated pdf file
+\usepackage{caption}
+\usepackage{float}
+\usepackage{subcaption}
+\usepackage{hyperref}
+\hypersetup{
+	colorlinks=true,       % false: boxed links; true: colored links
+	linkcolor=blue,        % color of internal links
+	citecolor=blue,        % color of links to bibliography
+	filecolor=magenta,     % color of file links
+	urlcolor=blue         
+}
+%++++++++++++++++++++++++++++++++++++++++
+
+
+\begin{document}
+
+\title{732A66 Decision Theory: Assignment 2}
+\author{Nicolas Taba (nicta839)}
+\date{\today}
+\maketitle
+
+
+
+\section{Collaboration disclaimer}
+
+This work was discussed with Yuki Washio and Alejo Perez.
+
+
+\section{Presentation of the problem}
+
+In this section, we present the problem and some of our assumptions about the problem. We are traveling from a point A to airport B to catch a specific flight. We need reach the airport by 9.30 am in order not to miss the flight and we must choose to take either the train or the car. We have an additional cost of missing the flight, which is 300 euros. We identify here already that the objective is to arrive at the airport by this time and that this is the primary objective of the coming decision problem.
+
+If we take the train, the journey takes 3 hours and the train departs at 6 am. The ticket costs 50 euros, the train will not derail or suffer any accident but can however be delayed according to the following probability: $(45 - x) \cdot 0.001$. We note here that the problem states strong assumptions about the reliability of the train and according to the problem parameters, we do not wish to be delayed by more than 30 minutes in order to accomplish the objective on time. We also note that although the delay can take integer positive values, the function is only defined for values smaller than 45.
+
+If we take the car, the journey is assumed to take at least 2 hours and an additional 15 minutes to find parking (total of 2.25 hours of traveling) and that the total cost of taking the car (parking included) is 70 euros. The probability of being delayed by y minutes is given by: $(90- y)\cdot 0.0002$ conditioned on the car not being involved in an accident. The car is also assumed to be in good shape and not break down. We notice here the same delay constrains than for the train in terms of the values that y may take. Furthermore, we notice that we do not wish to be delayed by more than 75 minutes conditioned on us not being in an accident.
+
+Furthermore, it is assumed that if we are in an accident, we will miss the flight automatically. The probability that we are involved in a car accident is 0.01, the probability that we are injured and in need of medical attention if we are in an accident is 0.4 and the probability that we might be hospitalized or die given that we are in an accident is 0.1.
+
+\section{What are the actions, states of nature and consequences?}
+
+We now wish to find the actions, states of nature and consequences of this problem. The actions are straightforward to find. They are namely "go by train" ($a_1$) and "go by car" ($a_2$).
+
+In the case of the states of nature, we could choose to delimit the states of nature as "delayed by x minutes" and then adding 3 additional states that would be "Delayed because of car accident but no need for medical care", "Delayed because of car accident but in need of medical care" and "Delayed because of car accident and in need of hospitalization or death". However, this is not a practical approach to the problem as we then get several states of nature that are the same than the others when we could regroup them by time chunks. Namely, we choose the following states of nature:
+
+\begin{itemize}
+	\item $S_1$ Delay by $<$ 30 minutes
+	\item $S_2$ Delay by $>$ 30 minutes and $<$ 75 minutes
+	\item $S_3$ Delay by $>$ 75 minutes
+	\item $S_4$ Delay because of accident, no need for medical care
+	\item $S_5$ Delay because of accident, in need of medical care
+	\item $S_6$ Delay because of accident, in need of hospitalization or death
+\end{itemize}
+
+In the three first states, it is assumed that we are not in any kind of accident. Furthermore, in the last 3 states, we assume that we are taking the car.
+
+For the consequences of the problem, we make several additional assumptions. We assume that even though the person taking the car has some kind of insurance, there is some cost $R$ associated with the repairs of the car. Furthermore, we assume also that there is some cost associated to the medical cost that has to be paid out-of-pocket. The cost for the medical care ($M$) is assumed to be smaller than the cost of hospitalization/death ($H$). We will remark here that putting a cash equivalent to death, the trauma of an accident or other more intangibles (disutilities) is unrealistic. For simplicity, we also assume the cost of car repairs to be the same for all accident scenarios. This is also unrealistic.s
+
+We take the consequences of not fulfilling the objective "getting to the airport before 9.30 am" to be:
+
+\begin{itemize}
+	\item Lose 300 euros if the flight is missed
+	\item Getting into an accident and missing the flight if we take the car. Cost $R$
+	\item Needing medical attention (if we are involved in a car accident). Cost $R + M$
+	\item Needing to go to the hospital or dying (if we are involved in a car accident). Cost $R + H$
+\end{itemize}
+
+\section{What kind of decision problem can we view this as?}
+
+In this section, we will work on defining everything as a single decision problem and see if we can use the EU-criterion to define it. First, we will be working with payoffs. We assume that the utility function is linear of payoff and we can thus work with payoffs only and investigate the expected payoff (ER).
+
+We will first start by establishing a payoff table.
+
+\begin{table}[h!]
+\begin{center}
+\begin{tabular}{|l|l|l|l|l|l|l|}
+\hline
+   & $S_1$ & $S_2$      & $S_3$     & $S_4$           & $S_5$              & $S_6$              \\ \hline
+$a_1$ & -50  & -50-300 & -50-300 &      -        &        -         &                - \\ \hline
+$a_2$ & -70  & -70     & -70-300 & -70 -300 - R & -70 - 300 - R - M & -70 - 300 - R - H \\ \hline
+\end{tabular}
+\caption{Payoff table for the decision problem}
+\end{center}
+\end{table}
+
+There are several things to note about this table. First, for action 1, there is no payoff for all states of the world because there is no chance of having an accident when taking the train. For the same action, states 2 and 3 represent the same outcome since getting to the airport being delayed by more than 30 minutes makes us fail the objective of being on time. We also note that no action dominates the other. Since we have one set of actions and one set of states of natures, we can model this problem as a decision problem.
+
+\subsection{ER with action 1}
+
+We express the expected payoff as:
+
+\begin{equation} 
+\label{eqn1}
+ER(a) = \sum_S R(a, S) \cdot P(S|a)
+\end{equation}
+
+For our case, when we take the train, we must calculate $P(S_1|a_1)$, $P(S_2|a_1)$ and $P(S_3|a_1)$. However, as noted earlier, we consider that the states 2 and 3 are the same with respect to $a_1$ as we are late anyway in those two cases. We will regroup them under the same probability $P(S_{23}|a_1)$.
+
+We must first calculate the probability of being delayed and then multiply this quantity to being delayed by at most 30 minutes and add the probability of not being delayed.
+
+\begin{align*}
+p(delay| a_1) = \sum_{i=1}^{44} (45 - i) \cdot 0.001 = 0.99 \\
+p(delay = 0| a_1) = 1 - p(delay| a_1) = 0.01 \\
+p(S_1|a_1) = p(delay| a_1) \cdot p(delay = 30| a_1) + p(delay = 0| a_1) = 0.895 \\
+\end{align*}
+
+have regrouped states 2 and 3 together such that $P(S_{23}|a_1) = 1 - p(S_1|a_1)$ since the other states are non-valid for this action. We get $P(S_{23}|a_1) = 0.105$
+
+We can now calculate the expected payoff for action 1 using \ref{eqn1}:
+
+
+\begin{align*}
+ER(a_1) = (-50) \cdot p(S_1|a_1) + (-350) \cdot P(S_{23}|a_1) \\
+ER(a_1) = -81.5
+\end{align*}
+
+\subsection{ER with action 2}
+
+We follow the same principles of calculations for the expected payoff, but we must keep in mind that for the first three calculations of probability of delay for states 1 through 3, we must take into account that we are not involved in any accidents.
+
+We start as previously with the probability of being delayed:
+
+\begin{align*}
+p(delay | a_2)= p(delay |accident) \cdot p(accident| a_2)+ p(delay|a_2, accident = 0) \cdot p(accident = 0 | a_2) \\
+p(delay| a_2) = 1 \cdot 0.001 + \left(\sum_{i=1}^{89} (90 - i) \cdot 0.0002 \right) \cdot 0.99 = 0.803 \\
+p(delay = 0 | a_2) = 1 - p(delay| a_2) = 0.197 \\
+\end{align*}
+
+We note here that the probability of being delayed given that we have been in an accident is 1 since we miss the flight in case of accident. Conversely, the probability of being late because of an accident does not contribute to the calculations for the three first states of nature.
+
+\begin{align*}
+p(S_1 | a_2)= p(S_1 |accident = 0, a_2) \cdot p(accident = 0 |a_2) + p(delay = 0 | a_2)\\
+p(S_1| a_2) = \left(\sum_{i=1}^{30} (90 - i) \cdot 0.0002 \right) \cdot 0.99 + 0.197 = 0.634 \\
+\end{align*}
+
+\begin{align*}
+p(S_2 | a_2)= p(S_2 |accident = 0, a_2) \cdot p(accident = 0 |a_2)\\
+p(S_2| a_2) = \left(\sum_{i=31}^{75} (90 - i) \cdot 0.0002 \right) \cdot 0.99 = 0.330 \\
+\end{align*}
+
+\begin{align*}
+p(S_3 | a_2)= p(S_3 |accident = 0, a_2) \cdot p(accident = 0 |a_2)\\
+p(S_3| a_2) = \left(\sum_{i=76}^{89} (90 - i) \cdot 0.0002 \right) \cdot 0.99 = 0.021 \\
+\end{align*}
+
+Now we calculate the probabilities of states 4 through 6 given that we have taken the car. They are calculated as the product of the probability of having an accident and the probability of the outcome (no medical care needed, medical care needed, hospitalization/death).
+
+\begin{align*}
+p(S_4 | a_2)= p(care = 0 |accident = 0, a_2) \cdot p(accident = 0 |a_2) = 0.5 \cdot 0.001 = 0.005 \\
+p(S_5| a_2) = 0.004 \\
+p(S_6| a_2) = 0.001
+\end{align*}
+
+Finally we calculate the expected payoff (\ref{eqn1}) for action 2 as:
+
+\begin{align*}
+ER(a_2) = (-70) \cdot (0.634 + 0.330) + (-370) \cdot 0.021 + (-370 - R) \cdot 0.005 + ... \\ 
+... (-370 - R - M) \cdot 0.004 + (-370 - R - H) \cdot 0.001 \\
+ER(a_2) = -78.95 - 0.001 \cdot R - 0.004 \cdot M - 0.001 \cdot H
+\end{align*}
+
+\section{Discussion \& reflection}
+
+We cannot immediately compare both expected payoffs since we don't know the values of the costs $R$, $M$ and $H$. Depending on the context of where the decision problem is taken, our knowledge of what these values could take could be very different. In a country where healthcare is subsidized and one needs not worry about hospital or medical care bills, the cost of the car accident might be the largest. Conversely in a country where access to healthcare is complicated, the cost of hospitalization may be greater than the other two costs. Thus we cannot state if taking one action or another is better given the information that we have here.
+
+We will however remember that in general, the cash equivalent of "death" is not realistic, but if we had to put a price on it we could theoretically set a limit price (on one's life) at which we should decide when to take the train or the car.
+
+This problem is interesting in that these seemingly "natural" decisions we take every day and are informed by our experiences seem to lose a little bit of their grounded sense when abstracted into a simple decision problem in a restricted finite possible set of states. There are several other assumptions that could make the problem much more difficult such as comfort, the reason why we absolutely need to catch the flight, how much one values their money and life. We make these decisions on a daily basis without much of second thoughts although the underlying simplified problem is not clear cut from a decision theoretic point of view.
+
+
+\end{document}
